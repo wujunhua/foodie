@@ -17,6 +17,12 @@ Install dependencies in your environment
 $ pip install -r requirements.txt
 ```
 
+Make and run [migrations](https://docs.djangoproject.com/en/1.10/topics/migrations/)
+```
+$ python manage.py makemigrations
+$ python manage.py migrate
+```
+
 Start server
 ```
 $ python manage.py runserver
