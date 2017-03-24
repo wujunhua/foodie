@@ -23,6 +23,11 @@ $ python manage.py makemigrations
 $ python manage.py migrate
 ```
 
+Create Django superuser so you can access the admin portal
+```
+$ python manage.py createsuperuser
+```
+
 Start server
 ```
 $ python manage.py runserver
