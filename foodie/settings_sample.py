@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'foodie.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'foodie',
-        'USER': 'csc322',
-        'PASSWORD': 'csc322spr17',
-        'HOST': 'foodie.citekse66ldj.us-east-1.rds.amazonaws.com',
-        'PORT': '5432',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
