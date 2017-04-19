@@ -17,6 +17,10 @@ Install dependencies in your environment
 $ pip install -r requirements.txt
 ```
 
+Install Postgres locally.
+
+main/settings.py file will be storing database information. So we created a template for the settings file, /main/settings_sample.py. Copy this file to /main/settings.py and change the database info to match your database name, user, and password.
+
 Make and run [migrations](https://docs.djangoproject.com/en/1.10/topics/migrations/)
 ```
 $ python manage.py makemigrations
