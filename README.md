@@ -17,7 +17,25 @@ Install dependencies in your environment
 $ pip install -r requirements.txt
 ```
 
-Install Postgres locally.
+Install Postgres locally, you will setup your local password for postgres.
+
+For Mac environment:
+```
+$ psql postgres
+$ CREATE DATABASE foodie;
+$ CREATE USER foodie WITH PASSWORD 'yourpassword';
+$ GRANT ALL PRIVILEGES ON DATABASE foodie TO foodie;
+$ ALTER DATABASE foodie OWNER TO foodie;
+```
+
+For Windows environment:
+```
+$ psql -U postgres
+$ CREATE DATABASE foodie;
+$ CREATE USER foodie WITH PASSWORD 'yourpassword';
+$ GRANT ALL PRIVILEGES ON DATABASE foodie TO foodie;
+$ ALTER DATABASE foodie OWNER TO foodie;
+```
 
 foodie/settings.py file will be storing database information. So we created a template for the settings file, /foodie/settings_sample.py. Copy this file to /foodie/settings.py and change the database info to match your database name, user, and password.
 
