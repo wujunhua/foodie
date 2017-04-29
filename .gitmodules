@@ -1,0 +1,3 @@
+[submodule "foodie-frontend"]
+	path = foodie-frontend
+	url = git@github.com:Raymond-Zhu/foodie-frontend.git
