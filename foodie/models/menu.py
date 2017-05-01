@@ -4,7 +4,7 @@ class Menu(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=50)
     price = models.IntegerField()
-    rating = models.FloatField()
+    rating = models.FloatField(default=None)
     num_ratings = models.IntegerField(default=0)
 
     def update_rating(self, rating):
