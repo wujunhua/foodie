@@ -8,5 +8,15 @@
             "rating":  5.0,
             "price": 30
         }
+    },
+    {
+        "model": "foodie.menu",
+        "pk": 2,
+        "fields": {
+            "name": "beef",
+            "description": "asdf",
+            "rating":  3.0,
+            "price": 30
+        }
     }
 ]
