@@ -1,0 +1,12 @@
+[
+    {
+        "model": "foodie.menu",
+        "pk": 1,
+        "fields": {
+            "name": "chicken",
+            "description": "asdf",
+            "rating":  5.0,
+            "price": 30
+        }
+    }
+]
