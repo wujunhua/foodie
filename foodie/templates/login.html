@@ -42,7 +42,7 @@
                     </div>
                     <input type="submit" class="btn btn-secondary" value="Login"></button>
                     <input type="hidden" name="next" value="{{ next }}"/>
-                    <a class="btn btn-secondary" href="">Register</a>
+                    <a class="btn btn-secondary" href="{% url 'register' %}">Register</a>
                     {% if form.errors %}
                     <p> Your username and password didn't match. Please try again.</p>
                     {% endif %}
