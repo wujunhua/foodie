@@ -32,7 +32,7 @@ class CreateUserForm(UserCreationForm):
         user_profile = UserProfile()
         user_profile.user = user
         user_profile.money = self.cleaned_data['money']
-        group = Group.objects.get(name='customer')
+        group, created = Group.objects.get_or_create(name='customer')
         user.groups.add(group)
         user.save()
         user_profile.save()
