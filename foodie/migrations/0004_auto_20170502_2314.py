@@ -5,10 +5,10 @@ from __future__ import unicode_literals
 from django.db import migrations
 from django.contrib.auth.models import Group
 
-def add_group():
+def add_group(apps, schema_editor):
     group, created = Group.objects.get_or_create(name='customer')
     if created:
-        logger.info('customer Group created')
+        print('customer Group created')
 
 class Migration(migrations.Migration):
 
