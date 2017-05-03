@@ -8,4 +8,4 @@ class UserProfile(models.Model):
     warnings_allowed = models.IntegerField(default=3)
     num_orders = models.IntegerField(default=0)
     money_spent = models.IntegerField(default=0)
-    is_certified  = models.BooleanField(default=False)
+    certified  = models.BooleanField(default=False)
