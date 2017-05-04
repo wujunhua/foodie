@@ -743,6 +743,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#779936', end
   float: left;
 }
 
+.shopping-cart .shopping-cart-items img {
+    width: 20%;
+}
+
 .shopping-cart .button {
   background: #8eb640;
   color: white;

@@ -54,3 +54,8 @@ Start server
 ```
 $ python manage.py runserver
 ```
+
+## Credits
+Shopping Cart style/inspiration:  https://codepen.io/drehimself/pen/VvYLmV
+Boostrap Theme: http://www.templatewire.com/touche-free-restaurant-website-template
+
