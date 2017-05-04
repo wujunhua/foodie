@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Menu{% endblock %}
+{% block content %}
+
+<!-- About Section -->
+  <header id="header">
+      <div class="intro" style="background: {% static "img/menu-bg.jpg" %} no-repeat center center; ">
+      <div class="overlay" style="background: rgba(0, 0, 0, 0.7)">
+        <div class="container">
+          <div class="row">
+            <div class="intro-text">
+              <h1>Menu</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div id="customer-menu" style="min-height: 800px; background-color: #f1f1f1">
+    <div class="container">
+    {% for row in menu %}
+      <div class="row" style="padding: 50px; text-align:center;">
+        {% for item in row %}
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <img src="{{ item.image_url }}" />
+                <div class="caption">
+                    <h3>{{ item.name }}</h3>
+                    <p>${{ item.price }}</p>
+                    <a href="#" class="btn btn-secondary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}

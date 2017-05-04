@@ -4,9 +4,10 @@
         "pk": 1,
         "fields": {
             "name": "chicken",
-            "description": "asdf",
+            "short_description": "asdf",
             "rating":  5.0,
-            "price": 30
+            "price": 30,
+            "image_url": "http://i.imgur.com/Z1JT6VP.jpg"
         }
     },
     {
@@ -14,9 +15,43 @@
         "pk": 2,
         "fields": {
             "name": "beef",
-            "description": "asdf",
+            "short_description": "asdf",
             "rating":  3.0,
-            "price": 30
+            "price": 30,
+            "image_url": "http://i.imgur.com/Z1JT6VP.jpg"
+        }
+    },
+    {
+        "model": "foodie.menu",
+        "pk": 3,
+        "fields": {
+            "name": "beef",
+            "short_description": "asdf",
+            "rating":  3.0,
+            "price": 30,
+            "image_url": "http://i.imgur.com/Z1JT6VP.jpg"
+        }
+    },
+    {
+        "model": "foodie.menu",
+        "pk": 4,
+        "fields": {
+            "name": "beef",
+            "short_description": "asdf",
+            "rating":  3.0,
+            "price": 30,
+            "image_url": "http://i.imgur.com/Z1JT6VP.jpg"
+        }
+    },
+    {
+        "model": "foodie.menu",
+        "pk": 5,
+        "fields": {
+            "name": "beef",
+            "short_description": "asdf",
+            "rating":  3.0,
+            "price": 30,
+            "image_url": "http://i.imgur.com/Z1JT6VP.jpg"
         }
     }
 ]
