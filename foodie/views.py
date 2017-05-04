@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.contrib import messages
 from django.http import HttpResponseRedirect
+
+from carton.cart import Cart
 from .models import Menu
 from .forms import CreateUserForm
 
@@ -24,5 +27,13 @@ def register(request):
 def menu(request):
     menu = Menu.objects.all()
     menu = [menu[x:x+4] for x in range(0, len(menu), 4)]
-    print(menu)
     return render(request, 'menu.html', {'menu': menu})
+
+def add(request):
+    cart = Cart(request.session)
+    item = Menu.objects.get(pk=request.GET.get('menu_id'))
+    cart.add(item, price=item.price)
+    message = 'Added ' + item.name + ' to cart'
+    messages.success(request, message)
+    return HttpResponseRedirect('/menu')
+

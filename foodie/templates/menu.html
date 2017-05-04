@@ -28,13 +28,18 @@
                 <div class="caption">
                     <h3>{{ item.name }}</h3>
                     <p>${{ item.price }}</p>
-                    <a href="#" class="btn btn-secondary">Add to Cart</a>
+                    <a href="{% url 'add' %}?menu_id={{ item.id }}" class="btn btn-secondary">Add to Cart</a>
                 </div>
             </div>
         </div>
         {% endfor %}
       </div>
     {% endfor %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
     </div>
   </div>
 
