@@ -50,6 +50,13 @@ Create Django superuser so you can access the admin portal
 $ python manage.py createsuperuser
 ```
 
+Add 'carton' to INSTALLED_APPS in settings.py
+
+Also add the following to your settings.py
+```
+CART_PRODUCT_MODEL = 'foodie.models.Menu'
+```
+
 Start server
 ```
 $ python manage.py runserver
