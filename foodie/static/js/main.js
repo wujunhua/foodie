@@ -75,11 +75,6 @@ function main() {
             effect: 'slideDown',
             keyboardNav: true,
     });
-
-    $("#cart").on("click", function() {
-        $(".shopping-cart").fadeToggle( "fast");
-      });
-
 }());
 
 

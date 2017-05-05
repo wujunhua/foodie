@@ -13,14 +13,21 @@
         </div> <!--end shopping-cart-header -->
     </li>
     <ul class="shopping-cart-items">
-        {% for item in cart.items %}
-        <li class="clearfix">
-            <img src={{ item.product.image_url }} alt="item1" />
-            <span class="item-name">{{ item.product.name }}</span>
-            <span class="item-price">${{ item.price }}</span>
-            <span class="item-quantity">Quantity: {{ item.quantity }}</span>
-        </li>
-        {% endfor %}
+        {% if cart.count != 0 %}
+            {% for item in cart.items %}
+            <li class="clearfix">
+                <a href="{% url 'remove' %}?menu_id={{ item.product.id }}" style="float:right; margin-top:5%"><i class="fa fa-times fa-3x" aria-hidden="true"></i></a>
+                <img src={{ item.product.image_url }} alt="item1" />
+                <span class="item-name">{{ item.product.name }}</span>
+                <span class="item-price">${{ item.price }}</span>
+                <span class="item-quantity">Quantity: {{ item.quantity }}</span>
+            </li>
+            {% endfor %}
+        {% else %}
+            <li class="clearfix text-center">
+                <p> Empty</p>
+            </li>
+        {% endif %}
     </ul>
     <a href="#" class="button">Checkout</a>
 </ul>

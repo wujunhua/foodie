@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.contrib import messages
+from django.contrib.auth import views as auth_view
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
 from carton.cart import Cart
-from .models import Menu
-from .forms import CreateUserForm
+from .models import Menu, UserProfile
+from .forms import CreateUserForm, AddressForm
 
 def index(request):
     context = {
@@ -24,10 +26,13 @@ def register(request):
         print(form.errors)
         return render(request, 'register.html', {'form': form})
 
+@login_required(login_url='/login/')
 def menu(request):
     menu = Menu.objects.all()
     menu = [menu[x:x+4] for x in range(0, len(menu), 4)]
-    return render(request, 'menu.html', {'menu': menu})
+    user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
+    print(user_profile)
+    return render(request, 'menu.html', {'menu': menu, 'certified': user_profile.certified})
 
 def add(request):
     cart = Cart(request.session)
@@ -37,3 +42,12 @@ def add(request):
     messages.success(request, message)
     return HttpResponseRedirect('/menu')
 
+def remove(request):
+    cart = Cart(request.session)
+    item = Menu.objects.get(pk=request.GET.get('menu_id'))
+    cart.remove(item)
+    return HttpResponseRedirect('/menu')
+
+def checkout(request):
+    form = AddressForm()
+    return render(request, 'checkout.html', {'form': form, "nav_on":True})

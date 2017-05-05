@@ -759,7 +759,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#779936', end
   margin: 25px 0 15px 0;
 }
 .button:hover {
-  background: #729ef9;
+  background: #222;
 }
 
 .clearfix:after {

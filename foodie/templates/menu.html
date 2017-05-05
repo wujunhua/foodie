@@ -5,7 +5,7 @@
 
 <!-- About Section -->
   <header id="header">
-      <div class="intro" style="background: {% static "img/menu-bg.jpg" %} no-repeat center center; ">
+      <div class="intro" style="background: url({% static "img/menu-bg.jpg" %}) no-repeat center center; ">
       <div class="overlay" style="background: rgba(0, 0, 0, 0.7)">
         <div class="container">
           <div class="row">
@@ -17,6 +17,11 @@
       </div>
     </div>
   </header>
+  {% if not certified %}
+  <div class="text-center">
+    <h1 style="margin: 50px;">Sorry! Our manager has not certified your account yet. Please try again later.</h1>
+  </div>
+  {% else %}
   <div id="customer-menu" style="min-height: 800px; background-color: #f1f1f1">
     <div class="container">
     {% for row in menu %}
@@ -42,5 +47,6 @@
     {% endif %}
     </div>
   </div>
+  {% endif %}
 
 {% endblock %}

@@ -1,5 +1,9 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User, Group
+from django.urls import reverse
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout
+from crispy_forms.bootstrap import StrictButton
 from django import forms
 from .models import UserProfile
 
@@ -38,3 +42,15 @@ class CreateUserForm(UserCreationForm):
         user_profile.save()
         return  user_profile
 
+class AddressForm(forms.Form):
+    address = forms.CharField(required=True,max_length=100)
+
+    def __init__(self, *args, **kwargs):
+        super(AddressForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.form_action= reverse('checkout')
+        self.helper.layout = Layout(
+                'address',
+                StrictButton('Submit', css_class='btn-secondary'),
+                )
