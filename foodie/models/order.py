@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings # for ForeignKey on created_by
 from main.models import Employee
 from foodie.models import UserProfile
+from foodie.models import Menu
 
 #   #############################  ORDER  ######################################
 #
@@ -13,13 +14,14 @@ class Order(models.Model):
             default=1,
     )
     address = models.TextField(default="")
-    items_ordered = models.TextField(default="")
+    items_ordered = models.ManyToManyField(Menu)
     total = models.IntegerField()
+    frozen = models.BooleanField(default=False)
     delivered_by = models.ForeignKey(
             Employee,
             on_delete=models.CASCADE,
             limit_choices_to={'position' : 'DD'},
-            default=1,
+            null=True,
     )
 
     def __str__(self):

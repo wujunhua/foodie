@@ -13,8 +13,9 @@ class Menu(models.Model):
     num_ratings = models.IntegerField(default=0) #might not need this field
     times_ordered = models.IntegerField(default=0)
     image_url = models.URLField(default="")
+    on_menu = models.BooleanField(default=True)#Instead of deleting we just flip on_menu to false so it doesn't break relationships
     created_by = models.ForeignKey(
-            Employee, 
+            Employee,
             on_delete=models.CASCADE,
             limit_choices_to={'position' : 'CH'},
             default=1,

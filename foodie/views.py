@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
 from carton.cart import Cart
-from .models import Menu, UserProfile
+from .models import Menu, UserProfile, Order
 from .forms import CreateUserForm, AddressForm
 
 def index(request):
@@ -28,16 +28,20 @@ def register(request):
 
 @login_required(login_url='/login/')
 def menu(request):
-    menu = Menu.objects.all()
+    menu = Menu.objects.filter(on_menu=True)
     menu = [menu[x:x+4] for x in range(0, len(menu), 4)]
     user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
-    print(user_profile)
     return render(request, 'menu.html', {'menu': menu, 'certified': user_profile.certified})
 
 def add(request):
     cart = Cart(request.session)
     item = Menu.objects.get(pk=request.GET.get('menu_id'))
-    cart.add(item, price=item.price)
+
+    if request.user.groups.filter(name="vip").exists():
+        cart.add(item,price=item.price * .9)
+    else:
+        cart.add(item, price=item.price)
+
     message = 'Added ' + item.name + ' to cart'
     messages.success(request, message)
     return HttpResponseRedirect('/menu')
@@ -49,5 +53,28 @@ def remove(request):
     return HttpResponseRedirect('/menu')
 
 def checkout(request):
-    form = AddressForm()
-    return render(request, 'checkout.html', {'form': form, "nav_on":True})
+    if request.method == 'GET':
+        form = AddressForm()
+        return render(request, 'checkout.html', {'form': form, "nav_on":True})
+    elif request.method == 'POST':
+        form = AddressForm(request.POST)
+        if form.is_valid():
+            user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
+            cart = Cart(request.session)
+
+            order = Order.objects.create(
+                        customer_id=user_profile.id,
+                        address=form.cleaned_data['address'],
+                        total = cart.total,
+                        frozen = user_profile.money < cart.total
+                    )
+            for product in cart.products:
+                order.items_ordered.add(product)
+            order.save()
+            cart.clear()
+            user_profile.num_orders += 1
+            user_profile.money_spent += cart.total
+            user_profile.money -= cart.total
+            user_profile.save()
+            return render(request, 'order_success.html', {'order_no': order.id, 'nav_on': True})
+

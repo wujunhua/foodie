@@ -5,7 +5,7 @@ from foodie.models import Order
 
 class UserProfileAdminModel(admin.ModelAdmin):
     model = UserProfile
-    list_display = ['id', 'user',  'money', 'warnings_allowed', 'certified','money_spent', 'num_orders']
+    list_display = ['id', 'user',  'money', 'warnings', 'certified','money_spent', 'num_orders']
     list_display_links = ["id", "user"]
     readonly_fields = ('user',)
     list_filter = ["certified"]

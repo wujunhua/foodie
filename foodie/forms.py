@@ -52,5 +52,5 @@ class AddressForm(forms.Form):
         self.helper.form_action= reverse('checkout')
         self.helper.layout = Layout(
                 'address',
-                StrictButton('Submit', css_class='btn-secondary'),
+                StrictButton('Submit', type='submit', css_class='btn-secondary'),
                 )

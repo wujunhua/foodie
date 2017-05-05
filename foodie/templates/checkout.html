@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load carton_tags %}
+{% get_cart as cart %}
+
 {% block title %}Checkout{% endblock %}
 {% block content %}
 <div id="about" style="min-height:800px">

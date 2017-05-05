@@ -19,7 +19,7 @@
                 <a href="{% url 'remove' %}?menu_id={{ item.product.id }}" style="float:right; margin-top:5%"><i class="fa fa-times fa-3x" aria-hidden="true"></i></a>
                 <img src={{ item.product.image_url }} alt="item1" />
                 <span class="item-name">{{ item.product.name }}</span>
-                <span class="item-price">${{ item.price }}</span>
+                <span class="item-price">${{ item.subtotal }}</span>
                 <span class="item-quantity">Quantity: {{ item.quantity }}</span>
             </li>
             {% endfor %}
@@ -29,5 +29,5 @@
             </li>
         {% endif %}
     </ul>
-    <a href="#" class="button">Checkout</a>
+    <a href="{% url 'checkout' %}" class="button">Checkout</a>
 </ul>
