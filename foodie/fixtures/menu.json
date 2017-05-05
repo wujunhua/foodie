@@ -3,10 +3,11 @@
         "model": "foodie.menu",
         "pk": 1,
         "fields": {
-            "name": "chicken",
-            "short_description": "asdf",
+            "name": "Fresh Chicken",
+            "short_description": "Unbelievably Tasty!",
+            "long_description": "Unbelievably Tasty!",
             "rating":  5.0,
-            "price": 30,
+            "price": 15,
             "image_url": "http://i.imgur.com/Z1JT6VP.jpg"
         }
     },
@@ -14,44 +15,48 @@
         "model": "foodie.menu",
         "pk": 2,
         "fields": {
-            "name": "beef",
-            "short_description": "asdf",
-            "rating":  3.0,
-            "price": 30,
-            "image_url": "http://i.imgur.com/Z1JT6VP.jpg"
+            "name": "Fresh Beef",
+            "short_description": "Fingerlicking Good",
+            "long_description": "Fingerlicking Good",
+            "rating":  4.0,
+            "price": 20,
+            "image_url": "https://pbs.twimg.com/profile_images/791067045991358464/yy_F__YU.jpg"
         }
     },
     {
         "model": "foodie.menu",
         "pk": 3,
         "fields": {
-            "name": "beef",
-            "short_description": "asdf",
-            "rating":  3.0,
-            "price": 30,
-            "image_url": "http://i.imgur.com/Z1JT6VP.jpg"
+            "name": "Crispy Pork",
+            "short_description": "Oink Oink",
+            "long_description": "Oink Oink",
+            "rating":  3.5,
+            "price": 10,
+            "image_url": "http://www.chinasichuanfood.com/wp-content/uploads/2014/05/cripsy-pork-belly-8th.jpg"
         }
     },
     {
         "model": "foodie.menu",
         "pk": 4,
         "fields": {
-            "name": "beef",
-            "short_description": "asdf",
+            "name": "Turducken",
+            "short_description": "Why god...",
+            "long_description": "You prob dont wanna eat this",
             "rating":  3.0,
             "price": 30,
-            "image_url": "http://i.imgur.com/Z1JT6VP.jpg"
+            "image_url": "http://www.schallerweber.com/cms/wp-content/uploads/2012/11/foo_ck_turducken_1223.jpeg"
         }
     },
     {
         "model": "foodie.menu",
         "pk": 5,
         "fields": {
-            "name": "beef",
-            "short_description": "asdf",
-            "rating":  3.0,
-            "price": 30,
-            "image_url": "http://i.imgur.com/Z1JT6VP.jpg"
+            "name": "Octopus",
+            "short_description": "So chewy, so good!",
+            "long_description": "So chewy, so good!",
+            "rating":  4.5,
+            "price": 20,
+            "image_url": "http://www.seriouseats.com/recipes/assets_c/2013/08/20130819-italian-grilled-octopus-polipo-edit-thumb-625xauto-347183.jpg"
         }
     }
 ]
