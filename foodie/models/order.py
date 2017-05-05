@@ -12,10 +12,11 @@ class Order(models.Model):
             on_delete=models.CASCADE,
             default=1,
     )
+    address = models.TextField(default="")
     items_ordered = models.TextField(default="")
     total = models.IntegerField()
     delivered_by = models.ForeignKey(
-            Employee, 
+            Employee,
             on_delete=models.CASCADE,
             limit_choices_to={'position' : 'DD'},
             default=1,
