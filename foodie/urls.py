@@ -25,7 +25,8 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^menu/$', views.menu, name='menu'),
-    url(r'add/$', views.add, name='add'),
+#   url(r'add/$', views.add, name='add'),  # Original
+    url(r'^add/$', views.add, name='add'),  # Mike added the carrot (^) cause it was fuckin up adding records in the admin screen
 #   url(r'^', include('main.urls')),
     url(r'^admin/', admin.site.urls),
 ]
