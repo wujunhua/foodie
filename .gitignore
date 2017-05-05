@@ -2,6 +2,7 @@
 
 foodie/settings.py
 foodie/migrations/
+main/migrations/
 db.sqlite3
 
 **/__pycache__

@@ -29,9 +29,9 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^menu/$', views.menu, name='menu'),
-    url(r'add/$', views.add, name='add'),
-    url(r'remove/$', views.remove, name='remove'),
-    url(r'checkout/$', views.checkout, name='checkout'),
+    url(r'^add/$', views.add, name='add'),
+    url(r'^remove/$', views.remove, name='remove'),
+    url(r'^checkout/$', views.checkout, name='checkout'),
 #   url(r'^', include('main.urls')),
     url(r'^admin/', admin.site.urls),
 ]
