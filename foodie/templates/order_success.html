@@ -4,6 +4,9 @@
 <div id="about" style="min-height:800px">
 <div class="container">
     <p>Order #{{ order_no }} placed </p>
+    {% if frozen %}
+    <p>Your account lacks funds so your order has been frozen until you add more  funds.</p>
+    {% endif %}
 </div>
 </div>
 {% endblock %}

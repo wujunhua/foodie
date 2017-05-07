@@ -16,7 +16,7 @@
         {% if cart.count != 0 %}
             {% for item in cart.items %}
             <li class="clearfix">
-                <a href="{% url 'remove' %}?menu_id={{ item.product.id }}" style="float:right; margin-top:5%"><i class="fa fa-times fa-3x" aria-hidden="true"></i></a>
+                <a href="{% url 'remove' %}?menu_id={{ item.product.id }}&next={{ request.path|urlencode }}" style="float:right; margin-top:5%"><i class="fa fa-times fa-3x" aria-hidden="true"></i></a>
                 <img src={{ item.product.image_url }} alt="item1" />
                 <span class="item-name">{{ item.product.name }}</span>
                 <span class="item-price">${{ item.subtotal }}</span>

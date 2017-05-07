@@ -50,7 +50,7 @@ def remove(request):
     cart = Cart(request.session)
     item = Menu.objects.get(pk=request.GET.get('menu_id'))
     cart.remove(item)
-    return HttpResponseRedirect('/menu')
+    return HttpResponseRedirect(request.GET.get('next'))
 
 def checkout(request):
     if request.method == 'GET':
@@ -77,5 +77,5 @@ def checkout(request):
             user_profile.money_spent += cart.total
             user_profile.money -= cart.total
             user_profile.save()
-            return render(request, 'order_success.html', {'order_no': order.id, 'nav_on': True})
+            return render(request, 'order_success.html', {'order_no': order.id, 'frozen': order.frozen, 'nav_on': True})
 
