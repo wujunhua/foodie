@@ -773,3 +773,44 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#779936', end
 .navbar-default .navbar-nav > .open > a:focus {
   background-color: transparent;
 }
+
+#about .checkout-row {
+    padding: 10px;
+    border-bottom: dashed;
+    border-width: thin;
+}
+
+#checkout-top {
+    border-top: dashed;
+    border-width: thin;
+    margin-top: 20px;
+}
+
+#about .checkout-img {
+    width: 50%;
+    display: block;
+    margin: auto;
+    float: left;
+}
+
+#about .checkout-trash {
+    float: right;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+#about .checkout-name, #about .checkout-desc {
+    line-height: 0px;
+    margin: 30px 0px 30px 0px;
+}
+
+#about .checkout-price {
+    line-height: 0px;
+    margin: 45px 0px 30px 0px;
+    margin-left: 200px;
+}
+
+
+#about .address-form {
+    margin-top: 50px;
+}

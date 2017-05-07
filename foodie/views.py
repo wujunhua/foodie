@@ -54,8 +54,9 @@ def remove(request):
 
 def checkout(request):
     if request.method == 'GET':
+        cart = Cart(request.session)
         form = AddressForm()
-        return render(request, 'checkout.html', {'form': form, "nav_on":True})
+        return render(request, 'checkout.html', {'form': form, "nav_on":True, "cart": cart})
     elif request.method == 'POST':
         form = AddressForm(request.POST)
         if form.is_valid():
