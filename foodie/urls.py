@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^add/$', views.add, name='add'),
     url(r'^remove/$', views.remove, name='remove'),
     url(r'^checkout/$', views.checkout, name='checkout'),
+    url(r'^orders/$', views.orders, name="orders"),
 #   url(r'^', include('main.urls')),
     url(r'^admin/', admin.site.urls),
 ]

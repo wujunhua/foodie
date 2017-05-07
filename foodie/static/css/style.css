@@ -776,12 +776,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#779936', end
 
 #about .checkout-row {
     padding: 10px;
-    border-bottom: dashed;
+    border-bottom: solid;
     border-width: thin;
 }
 
 #checkout-top {
-    border-top: dashed;
+    border-top: solid;
     border-width: thin;
     margin-top: 20px;
 }
@@ -813,4 +813,43 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#779936', end
 
 #about .address-form {
     margin-top: 50px;
+}
+
+
+#about .order-no {
+    color: #333;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 0px;
+    margin: 15px 0px 15px 0px;
+}
+
+#about .order {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 10px 30px 10px 30px;
+}
+
+/*#about .order .order-item-name, .order .order-item-descr {*/
+#about .order p {
+    padding: 10px 0px 10px 0px;
+    line-height: 0px;
+    margin: 0px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+#about .order-heading {
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+#about .order-heading p {
+    line-height: 0px;
+    margin: 0px;
+}
+
+#about .order-bottom {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 2%;
 }

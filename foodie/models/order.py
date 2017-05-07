@@ -14,7 +14,6 @@ class Order(models.Model):
             default=1,
     )
     address = models.TextField(default="")
-    items_ordered = models.ManyToManyField(Menu)
     total = models.IntegerField()
     frozen = models.BooleanField(default=False)
     delivered_by = models.ForeignKey(
@@ -26,3 +25,13 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.id) + " - " + self.customer.user.username
+
+    def item_set(self):
+        return OrderItem.objects.filter(order_id=self.id)
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    item = models.ForeignKey(Menu, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    subtotal = models.IntegerField()

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
 from carton.cart import Cart
-from .models import Menu, UserProfile, Order
+from .models import Menu, UserProfile, Order, OrderItem
 from .forms import CreateUserForm, AddressForm
 
 def index(request):
@@ -69,9 +69,11 @@ def checkout(request):
                         total = cart.total,
                         frozen = user_profile.money < cart.total
                     )
-            for product in cart.products:
-                order.items_ordered.add(product)
-            order.save()
+            for item in cart.items:
+                order_item = OrderItem.objects.create(order=order,
+                                                      item=item.product,
+                                                      quantity=item.quantity,
+                                                      subtotal=item.subtotal )
             cart.clear()
             user_profile.num_orders += 1
             user_profile.money_spent += cart.total
@@ -79,3 +81,8 @@ def checkout(request):
             user_profile.save()
             return render(request, 'order_success.html', {'order_no': order.id, 'frozen': order.frozen, 'nav_on': True})
 
+def orders(request):
+    user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
+    orders = Order.objects.filter(customer_id=user_profile.id)
+    print(orders)
+    return render(request, 'orders.html', {'nav_on': True, 'orders': orders})

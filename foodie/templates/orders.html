@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Orders{% endblock %}
+{% block content %}
+
+<div id="about" style="min-height:800px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Orders</h1>
+                <hr>
+            </div>
+        </div>
+
+        {% for order in orders %}
+        <div class="row order-heading">
+            <div class="col-md-4">
+                <p class="order-no">Order #{{ order.id }}
+                {% if order.frozen %}
+                (Frozen)
+                {% endif %}
+                </p>
+            </div>
+            <div class="col-md-6">
+                <p style="float:right;">Total: ${{ order.total }}</p>
+            </div>
+            <div class="col-md-2">
+                <p style="float:right;">{{ order.date }}</p>
+            </div>
+        </div>
+
+        {% for order_item in order.item_set %}
+        <div class="row order">
+            <div class="col-md-2">
+                <img src="{{ order_item.item.image_url }}" class="checkout-img" />
+            </div>
+            <div class="col-md-4">
+                <div class="order-row-group">
+                    <p class="order-item-name">{{ order_item.item.name }}</p>
+                    <br>
+                    <p class="order-item-descr"><em>{{ order_item.item.short_description }}</em></p>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="order-row-group">
+                    <p class="order-item-quant">Quantity: {{ order_item.quantity }}</p>
+                    <br>
+                    <p class="order-item-subtotal"> ${{ order_item.subtotal }}</p>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <p>Rate</p>
+            </div>
+            <div class="col-md-2">
+                <a href=""><p>Complain</p></a>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="row order-bottom"></div>
+    {% endfor %}
+    </div> <!-- end container-->
+</div>
+
+{% endblock %}
