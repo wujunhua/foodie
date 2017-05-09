@@ -74,11 +74,11 @@ def checkout(request):
                                                       item=item.product,
                                                       quantity=item.quantity,
                                                       subtotal=item.subtotal )
-            cart.clear()
             user_profile.num_orders += 1
             user_profile.money_spent += cart.total
             user_profile.money -= cart.total
             user_profile.save()
+            cart.clear()
             return render(request, 'order_success.html', {'order_no': order.id, 'frozen': order.frozen, 'nav_on': True})
 
 def orders(request):
