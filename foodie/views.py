@@ -53,14 +53,14 @@ def remove(request):
     return HttpResponseRedirect(request.GET.get('next'))
 
 def checkout(request):
+    user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
     if request.method == 'GET':
         cart = Cart(request.session)
         form = AddressForm()
-        return render(request, 'checkout.html', {'form': form, "nav_on":True, "cart": cart})
+        return render(request, 'checkout.html', {'form': form, "nav_on":True, "cart": cart, 'money': user_profile.money})
     elif request.method == 'POST':
         form = AddressForm(request.POST)
         if form.is_valid():
-            user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
             cart = Cart(request.session)
 
             order = Order.objects.create(

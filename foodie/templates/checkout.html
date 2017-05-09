@@ -39,6 +39,10 @@
             <div class="col-md-6 address-form">
                 {% crispy form %}
             </div>
+            <div class="col-md-6">
+                <p class="checkout-price">Total: ${{ cart.total }} <span style="float:right;">Money: ${{ money }} </span>
+                </p>
+            </div>
         </div>
     {% endif %}
 </div>
