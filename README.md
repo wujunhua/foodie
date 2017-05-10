@@ -37,10 +37,22 @@ $ GRANT ALL PRIVILEGES ON DATABASE foodie TO foodie;
 $ ALTER DATABASE foodie OWNER TO foodie;
 ```
 
-foodie/settings.py file will be storing database information. 
-So we created a template for the settings file, /foodie/settings_sample.py. 
-Copy this file to /foodie/settings.py and change the database info to match 
-your database name, user, and password.
+foodie/settings.py file will be storing database information. So we created a template for the settings file, /foodie/settings_sample.py. Copy this file to /foodie/settings.py and change the database info to match your database name, user, and password.
+
+```
+INSTALLED_APPS = [
+    'foodie',
+    'main.apps.MainConfig',
+    'crispy_forms',
+    'carton',
+    'django.contrib.auth',
+    'django.contrib.admin',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
 
 Make and run [migrations](https://docs.djangoproject.com/en/1.10/topics/migrations/)
 ```
