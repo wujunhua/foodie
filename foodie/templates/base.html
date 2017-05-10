@@ -34,8 +34,8 @@
             <div class="col-md-4">
                 <h3>Address</h3>
                 <div class="contact-item">
-                <p>4321 California St,</p>
-                <p>San Francisco, CA 12345</p>
+                <p>160 Convent Ave</p>
+                <p>New York, NY 10031</p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -49,10 +49,11 @@
                 <h3>Contact Info</h3>
                 <div class="contact-item">
                 <p>Phone: +1 123 456 1234</p>
-                <p>Email: info@company.com</p>
+                <p>Email: info@foodie.com</p>
                 </div>
             </div>
             </div>
+            <div id="map"></div>
             <div class="container-fluid text-center copyrights">
             <div class="col-md-8 col-md-offset-2">
                 <div class="social">
@@ -75,5 +76,9 @@
         <script type="text/javascript" src={% static "js/star-rating.js" %}></script>
         <script type="text/javascript" src={% static "js/theme.js" %}></script>
         <script type="text/javascript" src={% static "js/main.js" %}></script>
+        <script type="text/javascript" src={% static "js/maps.js" %}></script>
+        <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4x9jIycpDgxPyAbvM3SUvU8EDFFoBU50&callback=initMap">
+    </script>
     </body>
 </html>

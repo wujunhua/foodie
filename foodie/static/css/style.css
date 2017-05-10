@@ -860,3 +860,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#779936', end
 #about .order-row-group {
     margin-top: 2%;
 }
+
+#map{
+    height: 400px;
+    width: 100%;
+}
