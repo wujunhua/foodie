@@ -77,6 +77,15 @@ function main() {
           theme: 'krajee-fa',
           showCaption: false
         });
+
+        $('input[class*="-rating"]').rating().on("rating.change", function(event, value, caption) {
+            $(this).rating("refresh", {disabled:true, showClear:false});
+        });
+
+        $('.display-only').rating("refresh", {displayOnly: true});
+    });
+
+$(document).on('ready', function(){
     });
 
     // Nivo Lightbox

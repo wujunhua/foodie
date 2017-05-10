@@ -35,3 +35,5 @@ class OrderItem(models.Model):
     item = models.ForeignKey(Menu, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     subtotal = models.IntegerField()
+    food_rating = models.FloatField(default=0.0)
+    delivery_rating = models.FloatField(default=0.0)

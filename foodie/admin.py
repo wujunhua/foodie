@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import UserProfile
 from .models import Menu
-from foodie.models import Order
+from foodie.models import Order, OrderItem
 
 class UserProfileAdminModel(admin.ModelAdmin):
     model = UserProfile
@@ -36,3 +36,11 @@ class OrderAdminModel(admin.ModelAdmin):
         model = Order
 
 admin.site.register(Order, OrderAdminModel)
+
+class OrderItemAdminModel(admin.ModelAdmin):
+    list_display = ["id", "order", "item", "quantity", "subtotal", "food_rating", "delivery_rating"]
+    list_filter =["order", "item"]
+    search_fields = ["id", "order", "item"]
+    class Meta:
+        model = OrderItem
+admin.site.register(OrderItem, OrderItemAdminModel)
