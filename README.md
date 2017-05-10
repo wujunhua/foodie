@@ -37,7 +37,10 @@ $ GRANT ALL PRIVILEGES ON DATABASE foodie TO foodie;
 $ ALTER DATABASE foodie OWNER TO foodie;
 ```
 
-foodie/settings.py file will be storing database information. So we created a template for the settings file, /foodie/settings_sample.py. Copy this file to /foodie/settings.py and change the database info to match your database name, user, and password.
+foodie/settings.py file will be storing database information. 
+So we created a template for the settings file, /foodie/settings_sample.py. 
+Copy this file to /foodie/settings.py and change the database info to match 
+your database name, user, and password.
 
 Make and run [migrations](https://docs.djangoproject.com/en/1.10/topics/migrations/)
 ```
@@ -50,7 +53,7 @@ Create Django superuser so you can access the admin portal
 $ python manage.py createsuperuser
 ```
 
-Add 'carton' to INSTALLED_APPS in settings.py
+Add 'carton' and 'crispy_forms' to INSTALLED_APPS in settings.py
 
 Also add the following to your settings.py
 ```
