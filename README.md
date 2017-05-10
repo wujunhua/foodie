@@ -39,6 +39,18 @@ $ ALTER DATABASE foodie OWNER TO foodie;
 
 foodie/settings.py file will be storing database information. So we created a template for the settings file, /foodie/settings_sample.py. Copy this file to /foodie/settings.py and change the database info to match your database name, user, and password.
 
+Make and run [migrations](https://docs.djangoproject.com/en/1.10/topics/migrations/)
+```
+$ python manage.py makemigrations
+$ python manage.py migrate
+```
+
+Create Django superuser so you can access the admin portal
+```
+$ python manage.py createsuperuser
+```
+
+Add 'foodie', 'main', 'carton' and 'crispy_forms' to INSTALLED_APPS in settings.py
 ```
 INSTALLED_APPS = [
     'foodie',
@@ -53,19 +65,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 ```
-
-Make and run [migrations](https://docs.djangoproject.com/en/1.10/topics/migrations/)
-```
-$ python manage.py makemigrations
-$ python manage.py migrate
-```
-
-Create Django superuser so you can access the admin portal
-```
-$ python manage.py createsuperuser
-```
-
-Add 'carton' and 'crispy_forms' to INSTALLED_APPS in settings.py
 
 Also add the following to your settings.py
 ```
