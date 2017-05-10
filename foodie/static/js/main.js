@@ -70,6 +70,15 @@ function main() {
 
     });
 
+    $(document).on('ready', function(){
+        $('.kv-ltr-theme-fa-star').rating({
+          hoverOnClear: false,
+          showClear: false,
+          theme: 'krajee-fa',
+          showCaption: false
+        });
+    });
+
     // Nivo Lightbox
     $('.portfolio-item a').nivoLightbox({
             effect: 'slideDown',
