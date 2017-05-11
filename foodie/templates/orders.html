@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        {% for order in orders %}
+        {% for order in orders reversed %}
         <div class="row order-heading">
             <div class="col-md-4">
                 <p class="order-no">Order #{{ order.id }}
@@ -20,12 +20,13 @@
                 {% endif %}
                 </p>
             </div>
-            <div class="col-md-6">
-                <p style="float:right;">Total: ${{ order.total }}</p>
-            </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <p style="float:right;">{{ order.date }}</p>
             </div>
+            <div class="col-md-5">
+                <p style="float:right;">Total: ${{ order.total }}</p>
+            </div>
+
         </div>
 
         {% for order_item in order.item_set %}
@@ -47,6 +48,7 @@
                     <p class="order-item-subtotal"> ${{ order_item.subtotal }}</p>
                 </div>
             </div>
+            {% if not order.frozen %}
             <div class="col-md-2">
                 <label for="rating" class="control-label">Food</label>
                 {% if order_item.food_rating == 0.0 %}
@@ -65,6 +67,7 @@
             <div class="col-md-2">
                 <a href=""><p>Complain</p></a> /<a href=""><p>Compliment</p></a>
             </div>
+            {% endif %}
         </div>
         {% endfor %}
         <div class="row order-bottom"></div>
