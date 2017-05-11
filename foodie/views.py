@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import views as auth_view
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 from carton.cart import Cart
 from .models import Menu, UserProfile, Order, OrderItem
@@ -86,3 +86,15 @@ def orders(request):
     orders = Order.objects.filter(customer_id=user_profile.id)
     print(orders)
     return render(request, 'orders.html', {'nav_on': True, 'orders': orders})
+
+def rate_food(request):
+    order_item = OrderItem.objects.filter(id=request.POST.get('id')).first()
+    order_item.food_rating = float(request.POST.get("rating"))
+    order_item.save()
+    return HttpResponse('')
+
+def rate_delivery(request):
+    order_item = OrderItem.objects.filter(id=request.POST.get('id')).first()
+    order_item.delivery_rating = float(request.POST.get("rating"))
+    order_item.save()
+    return HttpResponse('')

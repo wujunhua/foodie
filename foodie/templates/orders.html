@@ -50,16 +50,16 @@
             <div class="col-md-2">
                 <label for="rating" class="control-label">Food</label>
                 {% if order_item.food_rating == 0.0 %}
-                    <input name="rating" class="kv-ltr-theme-fa-star food-rating" showClear="false" data-size="xs">
+                <input name="{{ order_item.id }}" class="kv-ltr-theme-fa-star food-rating" showClear="false" data-size="xs">
                 {% else %}
-                    <input name="rating" value="{{ order_item.food_rating }}" class="kv-ltr-theme-fa-star food-rating display-only" showClear="false" data-size="xs">
+                <input name="{{ order_item.id }}" value="{{ order_item.food_rating }}" class="kv-ltr-theme-fa-star food-rating display-only" showClear="false" data-size="xs">
                 {% endif %}
 
                 <label for="rating" class="control-label">Delivery</label>
                 {% if order_item.delivery_rating == 0.0 %}
-                    <input name="rating" class="kv-ltr-theme-fa-star delivery-rating" showClear="false" data-size="xs">
+                <input name="{{ order_item.id }}" class="kv-ltr-theme-fa-star delivery-rating" showClear="false" data-size="xs">
                 {% else %}
-                    <input name="rating" value="{{ order_item.delivery_rating }}" class="kv-ltr-theme-fa-star delivery-rating display-only" showClear="false" data-size="xs">
+                <input name="{{ order_item.id }}" value="{{ order_item.delivery_rating }}" class="kv-ltr-theme-fa-star delivery-rating display-only" showClear="false" data-size="xs">
                 {% endif %}
             </div>
             <div class="col-md-2">

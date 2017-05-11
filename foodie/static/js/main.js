@@ -79,13 +79,62 @@ function main() {
         });
 
         $('input[class*="-rating"]').rating().on("rating.change", function(event, value, caption) {
-            $(this).rating("refresh", {disabled:true, showClear:false});
+          $(this).rating("refresh", {disabled:true, showClear:false});
+            var rateUrl;
+            $.each($(this).attr('class').split(/\s+/), function(index, item) {
+              if(item == 'food-rating') {
+                rateUrl = "/rate-food/";
+                return false;
+              } else {
+                rateUrl = "/rate-delivery/";
+              }
+            });
+          $.ajax({
+            type: "POST",
+            url: rateUrl,
+            dataType: "json",
+            data:{ "id": $(this).attr('name'),
+                   "rating": value },
+            success: function(data) {
+              console.log("Post successful");
+            }
+          });
         });
 
-        $('.display-only').rating("refresh", {displayOnly: true});
-    });
+    // CSRF code
+    function getCookie(name) {
+        var cookieValue = null;
+        var i = 0;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (i; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
 
-$(document).on('ready', function(){
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        crossDomain: false, // obviates need for sameOrigin test
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type)) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+        $('.display-only').rating("refresh", {displayOnly: true});
+
+
     });
 
     // Nivo Lightbox
