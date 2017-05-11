@@ -41,6 +41,7 @@ foodie/settings.py file will be storing database information. So we created a te
 
 Make and run [migrations](https://docs.djangoproject.com/en/1.10/topics/migrations/)
 ```
+$ python manage.py makemigrations foodie
 $ python manage.py makemigrations
 $ python manage.py migrate
 ```
@@ -79,4 +80,3 @@ $ python manage.py runserver
 ## Credits
 Shopping Cart style/inspiration:  https://codepen.io/drehimself/pen/VvYLmV
 Boostrap Theme: http://www.templatewire.com/touche-free-restaurant-website-template
-
