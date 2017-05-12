@@ -75,7 +75,7 @@ def checkout(request):
                                                       quantity=item.quantity,
                                                       subtotal=item.subtotal )
             if not order.frozen:
-                user_profile.update()
+                user_profile.update(cart.total)
             cart.clear()
             return render(request, 'order_success.html', {'order_no': order.id, 'frozen': order.frozen, 'nav_on': True})
 

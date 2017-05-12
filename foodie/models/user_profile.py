@@ -15,16 +15,17 @@ class UserProfile(models.Model):
 
     def update(self, total):
         self.num_orders +=1
-        self.money_spent += cart.toal
-        self.money -= cart.total
+        self.money_spent += total
+        self.money -= total
         self.save()
 
+    def save(self, *args, **kwargs):
         if ((self.money_spent > 500 or self.num_orders > 50)):
-            self.promote_vip()
+            vip, created = Group.objects.get_or_create(name='vip')
+            self.user.groups.add(group)
+            self.user.save()
 
-    def promote_vip(self):
-        vip, created = Group.objects.get_or_create(name='vip')
-        self.user.groups.add(group)
-        self.user.save()
+        super(UserProfile, self).save(*args, **kwargs)
+
 
 
