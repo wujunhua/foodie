@@ -37,3 +37,10 @@ class OrderItem(models.Model):
     subtotal = models.IntegerField()
     food_rating = models.FloatField(default=0.0)
     delivery_rating = models.FloatField(default=0.0)
+
+    def save(self, *args, **kwargs):
+        self.item.rating = (self.item.rating * self.item.num_ratings + self.food_rating) / (self.item.num_ratings + 1)
+        self.item.num_ratings += 1
+        self.item.save()
+
+        super(OrderItem, self).save(*args, **kwargs)
