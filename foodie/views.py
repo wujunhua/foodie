@@ -102,7 +102,7 @@ def feedback(request):
         form = FeedbackForm(feedback_type=request.GET.get('type'))
         return render(request, 'complaint.html', {'form': form, 'type': request.GET.get('type'),'nav_on': True})
     elif request.method == 'POST':
-        form = FeedbackForm(request.post, feedback_type=request.REQUEST.get('type'))
+        form = FeedbackForm(request.POST, feedback_type=request.REQUEST.get('type'))
         if form.is_valid():
             user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
             feedback_model = Feedback.objects.create(customer=user_profile,
