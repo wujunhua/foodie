@@ -861,6 +861,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#779936', end
     margin-top: 2%;
 }
 
+form .feedback-submit {
+    margin-top: 10px;
+}
+
 #map{
     height: 400px;
     width: 100%;

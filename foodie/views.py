@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 from carton.cart import Cart
 from .models import Menu, UserProfile, Order, OrderItem
-from .forms import CreateUserForm, AddressForm
+from .forms import CreateUserForm, AddressForm, FeedbackForm
 
 def index(request):
     context = {
@@ -98,3 +98,9 @@ def rate_delivery(request):
     order_item.delivery_rating = float(request.POST.get("rating"))
     order_item.save()
     return HttpResponse('')
+
+def feedback(request):
+    if request.method == 'GET':
+        form = FeedbackForm(feedback_type=request.GET.get('type'))
+        return render(request, 'complaint.html', {'form': form, 'type': request.GET.get('type'),'nav_on': True})
+    return render(request, 'complaint.html', {'form': form})

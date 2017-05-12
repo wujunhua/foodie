@@ -2,8 +2,8 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User, Group
 from django.urls import reverse
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout
-from crispy_forms.bootstrap import StrictButton
+from crispy_forms.layout import Layout, Div, Field
+from crispy_forms.bootstrap import StrictButton, InlineRadios, InlineCheckboxes
 from django import forms
 from .models import UserProfile
 
@@ -54,3 +54,27 @@ class AddressForm(forms.Form):
                 'address',
                 StrictButton('Submit', type='submit', css_class='btn-secondary'),
                 )
+
+class FeedbackForm(forms.Form):
+    CHEF = "chef"
+    DELIVERY = "delivery"
+    FEEDBACK_TYPE_CHOICES = (
+            (CHEF, "Chef"),
+            (DELIVERY, "Delivery"),
+            )
+
+    feedback_choice = forms.ChoiceField(choices=FEEDBACK_TYPE_CHOICES)
+    feedback = forms.CharField(required=True, widget=forms.Textarea())
+
+    def __init__(self, feedback_type, *args, **kwargs):
+        super(FeedbackForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.form_action= reverse('feedback') + '?type=' + feedback_type
+        self.helper.form_show_labels= False
+        self.fields['feedback_choice'].label = False
+        self.helper.layout = Layout(
+                Field('feedback', rows="5", css_class='input-xlg'),
+                Div(InlineRadios('feedback_choice'),
+                    StrictButton('Submit', type='submit',
+                        css_class='btn-secondary feedback-submit'), css_class="col-md-2"))

@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^orders/$', views.orders, name="orders"),
     url(r'^rate-food/$', views.rate_food, name="rate-food"),
     url(r'^rate-delivery/$', views.rate_delivery, name="rate-delivery"),
+    url(r'^feedback/$', views.feedback, name='feedback'),
 #   url(r'^', include('main.urls')),
     url(r'^admin/', admin.site.urls),
 ]
