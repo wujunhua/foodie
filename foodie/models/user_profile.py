@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 #Maybe need a complaints field?
 class UserProfile(models.Model):
@@ -13,6 +13,18 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-    def is_vip(self):
-        return ((self.money_spent > 500 or self.num_orders > 50))
+    def update(self, total):
+        self.num_orders +=1
+        self.money_spent += cart.toal
+        self.money -= cart.total
+        self.save()
+
+        if ((self.money_spent > 500 or self.num_orders > 50)):
+            self.promote_vip()
+
+    def promote_vip(self):
+        vip, created = Group.objects.get_or_create(name='vip')
+        self.user.groups.add(group)
+        self.user.save()
+
 

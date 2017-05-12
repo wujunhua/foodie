@@ -74,10 +74,8 @@ def checkout(request):
                                                       item=item.product,
                                                       quantity=item.quantity,
                                                       subtotal=item.subtotal )
-            user_profile.num_orders += 1
-            user_profile.money_spent += cart.total
-            user_profile.money -= cart.total
-            user_profile.save()
+            if not order.frozen:
+                user_profile.update()
             cart.clear()
             return render(request, 'order_success.html', {'order_no': order.id, 'frozen': order.frozen, 'nav_on': True})
 
@@ -103,4 +101,17 @@ def feedback(request):
     if request.method == 'GET':
         form = FeedbackForm(feedback_type=request.GET.get('type'))
         return render(request, 'complaint.html', {'form': form, 'type': request.GET.get('type'),'nav_on': True})
-    return render(request, 'complaint.html', {'form': form})
+    elif request.method == 'POST':
+        form = FeedbackForm(request.post, feedback_type=request.REQUEST.get('type'))
+        if form.is_valid():
+            user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
+            feedback_model = Feedback.objects.create(customer=user_profile,
+                                                     feedback=form.cleaned_data['feedback'],
+                                                     employee_id=request.REQUEST.get('id')
+
+                    )
+            if request.REQUEST.get('type') == 'compliment':
+                feedback_model.feedback_type = Feedback.CMPLAINT
+            else:
+                feedback_model.feedback_type = Feedback.CMPMENT
+            feedback_model.save()
