@@ -2,10 +2,11 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import views as auth_view
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 
 from carton.cart import Cart
-from .models import Menu, UserProfile, Order, OrderItem
+from .models import Menu, UserProfile, Order, OrderItem, Feedback
 from .forms import CreateUserForm, AddressForm, FeedbackForm
 
 def index(request):
@@ -99,19 +100,26 @@ def rate_delivery(request):
 
 def feedback(request):
     if request.method == 'GET':
-        form = FeedbackForm(feedback_type=request.GET.get('type'))
+        form = FeedbackForm(feedback_type=request.GET.get('type'), order_item_id=request.GET.get('order_item_id'))
         return render(request, 'complaint.html', {'form': form, 'type': request.GET.get('type'),'nav_on': True})
     elif request.method == 'POST':
-        form = FeedbackForm(request.POST, feedback_type=request.REQUEST.get('type'))
+        print(request.GET.get('type'))
+        form = FeedbackForm(request.GET.get('type'), request.GET.get('order_item_id'), request.POST)
         if form.is_valid():
+            employee = None
+            if request.POST.get('employee') == FeedbackForm.CHEF:
+                employee = OrderItem.objects.filter(id=request.GET.get('order_item_id')).first().item.created_by
+            else:
+                employee = OrderItem.objects.filter(id=request.GET.get('order_item_id')).first().order.delivered_by
+
             user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
             feedback_model = Feedback.objects.create(customer=user_profile,
                                                      feedback=form.cleaned_data['feedback'],
-                                                     employee_id=request.REQUEST.get('id')
-
+                                                     employee=employee
                     )
-            if request.REQUEST.get('type') == 'compliment':
+            if request.GET.get('type') == 'compliment':
                 feedback_model.feedback_type = Feedback.CMPLAINT
             else:
                 feedback_model.feedback_type = Feedback.CMPMENT
             feedback_model.save()
+            return HttpResponseRedirect(reverse('orders'))

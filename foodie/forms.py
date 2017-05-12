@@ -66,11 +66,11 @@ class FeedbackForm(forms.Form):
     employee = forms.ChoiceField(choices=EMPLOYEE_CHOICES)
     feedback = forms.CharField(required=True, widget=forms.Textarea())
 
-    def __init__(self, feedback_type, *args, **kwargs):
+    def __init__(self, feedback_type, order_item_id, *args, **kwargs):
         super(FeedbackForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.form_action= reverse('feedback') + '?type=' + feedback_type
+        self.helper.form_action= reverse('feedback') + '?type=' + feedback_type + '&order_item_id=' + order_item_id
         self.helper.form_show_labels= False
         self.fields['employee'].label = False
         self.helper.layout = Layout(
