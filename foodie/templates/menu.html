@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load has_group %}
 {% block title %}Menu{% endblock %}
 {% block content %}
 
@@ -32,7 +33,11 @@
                 <img src="{{ item.image_url }}" />
                 <div class="caption">
                     <h3>{{ item.name }}</h3>
+                    {% if user|has_group:"vip" %}
+                    <p><span style="text-decoration:line-through">${{ item.price}}</span> <span style="color:red">${{ item.vip_price }}</span></p>
+                    {% else %}
                     <p>${{ item.price }}</p>
+                    {% endif %}
                     <a href="{% url 'add' %}?menu_id={{ item.id }}" class="btn btn-secondary">Add to Cart</a>
                 </div>
             </div>

@@ -39,7 +39,7 @@ def add(request):
     item = Menu.objects.get(pk=request.GET.get('menu_id'))
 
     if request.user.groups.filter(name="vip").exists():
-        cart.add(item,price=item.price * .9)
+        cart.add(item,price=item.vip_price)
     else:
         cart.add(item, price=item.price)
 

@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings # for ForeignKey on created_by
 from main.models import Employee
+from math import floor
 #
 #   ##############################  MENU  ######################################
 #
@@ -9,6 +10,7 @@ class Menu(models.Model):
     short_description = models.TextField(default="")
     long_description = models.TextField(default="")
     price = models.IntegerField()
+    vip_price = models.IntegerField(default=0)
     rating = models.FloatField(default=0.0) #might not need this field
     num_ratings = models.IntegerField(default=0) #might not need this field
     times_ordered = models.IntegerField(default=0)
@@ -27,3 +29,8 @@ class Menu(models.Model):
     def update_rating(self, rating):
         self.rating =  (self.rating * self.num_ratings + rating) / (self.num_ratings + 1)
         self.num_ratings += 1
+
+    def save(self, *args, **kwargs):
+        self.vip_price = floor(self.price * .9)
+        super(Menu, self).save(*args, **kwargs)
+
