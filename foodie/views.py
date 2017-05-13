@@ -1,13 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import views as auth_view
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
-
+from django.contrib.auth.forms import UserChangeForm
 from carton.cart import Cart
 from .models import Menu, UserProfile, Order, OrderItem, Feedback
-from .forms import CreateUserForm, AddressForm, FeedbackForm
+from .forms import CreateUserForm, AddressForm, FeedbackForm, EditProfileForm
 
 def index(request):
     context = {
@@ -123,3 +123,22 @@ def feedback(request):
                 feedback_model.feedback_type = Feedback.CMPMENT
             feedback_model.save()
             return HttpResponseRedirect(reverse('orders'))
+
+def profile(request):
+    args = {'user':request.user}
+    return render(request, 'profiles.html',args)
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+        else:
+            return redirect('/')
+
+    else:
+        form = EditProfileForm(instance = request.user)
+        args = {'form':form}
+        return render(request, 'edit_profile.html', args)

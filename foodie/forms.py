@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User, Group
 from django.urls import reverse
 from crispy_forms.helper import FormHelper
@@ -78,3 +78,16 @@ class FeedbackForm(forms.Form):
                 Div(InlineRadios('employee'),
                     StrictButton('Submit', type='submit',
                         css_class='btn-secondary feedback-submit'), css_class="col-md-2"))
+
+class EditProfileForm(UserChangeForm):
+    first_name = forms.CharField(label="First Name", max_length=30,
+            widget=forms.TextInput(attrs={'type': 'text'}))
+    last_name = forms.CharField(label="Last Name", max_length=30,
+            widget=forms.TextInput(attrs={'type': 'text'}))
+    class Meta:
+        model = User
+        fields = {
+                'first_name',
+                'last_name',
+                'password'
+        }
