@@ -24,8 +24,6 @@ class Employee(models.Model):
             self.demotions_remaining -= 1
         else:
             self.demotions_remaining -= 1
-
-        if self.demotions_remaining <= 0:
             self.user.is_active = False
             self.user.save()
 
