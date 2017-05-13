@@ -77,6 +77,7 @@ def checkout(request):
                                                       subtotal=item.subtotal )
             if not order.frozen:
                 user_profile.update(cart.total)
+                user_profile.save()
             cart.clear()
             return render(request, 'order_success.html', {'order_no': order.id, 'frozen': order.frozen, 'nav_on': True})
 
@@ -101,7 +102,7 @@ def rate_delivery(request):
 def feedback(request):
     if request.method == 'GET':
         form = FeedbackForm(feedback_type=request.GET.get('type'), order_item_id=request.GET.get('order_item_id'))
-        return render(request, 'complaint.html', {'form': form, 'type': request.GET.get('type'),'nav_on': True})
+        return render(request, 'feedback.html', {'form': form, 'type': request.GET.get('type'),'nav_on': True})
     elif request.method == 'POST':
         print(request.GET.get('type'))
         form = FeedbackForm(request.GET.get('type'), request.GET.get('order_item_id'), request.POST)
@@ -142,3 +143,28 @@ def edit_profile(request):
         form = EditProfileForm(instance = request.user)
         args = {'form':form}
         return render(request, 'edit_profile.html', args)
+
+def feedbacks(request):
+    feedbacks = Feedback.objects.filter(manager_seen=False)
+    return render(request, 'complaint.html', {'feedbacks': feedbacks})
+
+def valid(request):
+    feedback = Feedback.objects.filter(id=request.GET.get('id')).first()
+    if feedback.feedback_type == Feedback.CMPMENT:
+        feedback.employee.got_compliment()
+    else:
+        feedback.employee.got_complaint()
+    feedback.employee.save()
+    feedback.manager_seen = True
+    feedback.save()
+    return HttpResponseRedirect(reverse('feedbacks'))
+
+def invalid(request):
+    user_profile = UserProfile.objects.filter(user=request.user).first()
+    feedback = Feedback.objects.filter(id=request.GET.get('id')).first()
+    user_profile.warn()
+    user_profile.save()
+
+    feedback.manager_seen = True
+    feedback.save()
+    return HttpResponseRedirect(reverse('feedbacks'))

@@ -38,6 +38,9 @@ urlpatterns = [
     url(r'^feedback/$', views.feedback, name='feedback'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^profile/edit/$', views.edit_profile, name='editprofile'),
+    url(r'^feedbacks/$', views.feedbacks, name='feedbacks'),
+    url(r'^valid/$', views.valid, name='valid'),
+    url(r'^invalid/$', views.invalid, name='invalid'),
 #   url(r'^', include('main.urls')),
     url(r'^admin/', admin.site.urls),
 ]

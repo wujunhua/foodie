@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import UserProfile
 from .models import Menu
-from foodie.models import Order, OrderItem
+from foodie.models import Order, OrderItem, Feedback
 
 class UserProfileAdminModel(admin.ModelAdmin):
     model = UserProfile
@@ -44,3 +44,9 @@ class OrderItemAdminModel(admin.ModelAdmin):
     class Meta:
         model = OrderItem
 admin.site.register(OrderItem, OrderItemAdminModel)
+
+class FeedbackAdminModel(admin.ModelAdmin):
+    list_display = ["id", "customer", "employee", "feedback", "feedback_type"]
+    class Meta:
+        model= Feedback
+admin.site.register(Feedback, FeedbackAdminModel)
