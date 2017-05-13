@@ -3,10 +3,20 @@
 {% block content %}
 <div id="about" style="min-height:800px">
 <div class="container">
-    <p>Order #{{ order_no }} placed </p>
-    {% if frozen %}
+	{% if frozen %}
     <p>Your account lacks funds so your order has been frozen until you add more  funds.</p>
+    {% else %}
+    <p>Order #{{ order_no }} placed </p>
+    <!-- <h1 id="zoom-to-area-text">{{address}}</h1> -->
+    <div id="map"></div>
+	    <div>
+	    	<h1 hidden id="zoom-to-area-text">{{address}}</h1>
+	    	<br>
+			<input id="zoom-to-area" type="button" value="Delivery">
+		</div>
+    
     {% endif %}
+    
 </div>
 </div>
 {% endblock %}

@@ -79,7 +79,7 @@ def checkout(request):
                 user_profile.update(cart.total)
                 user_profile.save()
             cart.clear()
-            return render(request, 'order_success.html', {'order_no': order.id, 'frozen': order.frozen, 'nav_on': True})
+            return render(request, 'order_success.html', {'address': order.address,'order_no': order.id, 'frozen': order.frozen, 'nav_on': True})
 
 def orders(request):
     user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
