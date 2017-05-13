@@ -19,8 +19,19 @@
         <li><a href="{% url 'profile' %}" class="page-scroll">Account</a></li>
         <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
         <li class="dropdown">{% include 'shopping_cart.html' %}/<li>
-        {% elif user.is_authenticated %}
+
+        {% elif user.is_authenticated and request.user|has_group:"chef" %}
+        <li><a href="" class="page-scroll">Edit Menu</a></li>
+        <li><a href="" class="page-scroll">Dashboard</a></li>
         <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
+
+        {% elif user.is_authenticated and request.user|has_group:"manager" %}
+        <li><a href="" class="page-scroll">Certify Customers</a></li>
+        <li><a href="" class="page-scroll">Chef</a></li>
+        <li><a href="{% url 'feedbacks' %}" class="page-scroll">Feedback</a></li>
+        <li><a href="" class="page-scroll">Dashboard</a></li>
+        <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
+
         {% else %}
         <li><a href="#about" class="page-scroll">About</a></li>
         <li><a href="#restaurant-menu" class="page-scroll">Menu</a></li>
