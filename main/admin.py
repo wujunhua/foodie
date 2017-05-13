@@ -9,7 +9,7 @@ class EmployeeModelAdmin(admin.ModelAdmin):
             return True
         else:
             return False
-    get_user_active.boolean = True
+    active.boolean = True
 
     list_display = ["id", "first_name", "last_name", "salary", "demotions_remaining", "rating", "active"]
     list_filter = ["rating", "user__first_name", "user__is_active"]
