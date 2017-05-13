@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^rate-delivery/$', views.rate_delivery, name="rate-delivery"),
     url(r'^feedback/$', views.feedback, name='feedback'),
     url(r'^profile/$', views.profile, name='profile'),
+    url(r'^profile/edit/$', views.edit_profile, name='editprofile'),
 #   url(r'^', include('main.urls')),
     url(r'^admin/', admin.site.urls),
 ]
