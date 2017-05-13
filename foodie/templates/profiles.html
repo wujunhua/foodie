@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+  <header id="header">
+    <div class="intro">
+      <div class="overlay">
+        <div class="container">
+          <div class="row">
+            <div class="intro-text">
+              <h1>Account</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 offset-md-4">
+          <div class="about-text">
+            <h2>Account</h2>
+            <hr> </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 ">
+                    <div class="form-group">
+                    <h3> Username:</h3>
+                    <h3> {{user.username}}</h3>
+                    </div>
+                    </div>
+                    </div>
+        <div class="row">
+        <div class="col-md-12 ">
+                     <div class="form-group">
+                    <h3> First Name:</h3>
+                    <h3> {{user.first_name}}</h3>
+                    </div>
+                    </div>
+                    </div>
+        <div class="row">
+        <div class="col-md-12 ">
+                    <div class="form-group">
+                    <h3> Last Name:</h3>
+                    <h3> {{user.last_name}}</h3>
+                    </div>
+                    </div>
+                    </div>
+        <div class="row">
+        <div class="col-md-12 ">
+                    <div class="form-group">
+                    <h3> Remaining Balance:</h3>
+                    <h3> {{user.userprofile.money}}</h3>
+                   </div>
+                    </div>
+                    </div>
+        <div class="row">
+        <div class="col-md-12 ">
+                    <h3> Number of warnings:</h3>
+                    <h3> {{user.userprofile.warnings}}</h3>
+                   </div>
+                    </div>
+                    </div>
+                
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock content %}

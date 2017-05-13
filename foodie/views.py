@@ -123,3 +123,7 @@ def feedback(request):
                 feedback_model.feedback_type = Feedback.CMPMENT
             feedback_model.save()
             return HttpResponseRedirect(reverse('orders'))
+
+def profile(request):
+    args = {'user':request.user}
+    return render(request, 'profiles.html',args)
