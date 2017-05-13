@@ -146,7 +146,7 @@ def edit_profile(request):
 
 def feedbacks(request):
     feedbacks = Feedback.objects.filter(manager_seen=False)
-    return render(request, 'complaint.html', {'feedbacks': feedbacks})
+    return render(request, 'complaint.html', {'feedbacks': feedbacks, 'nav_on': True})
 
 def valid(request):
     feedback = Feedback.objects.filter(id=request.GET.get('id')).first()

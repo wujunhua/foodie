@@ -29,6 +29,7 @@ class Employee(models.Model):
     # 0 = neutral
     rating = models.SmallIntegerField(default=0)
     complaints = models.SmallIntegerField(default=0)
+    compliments = models.SmallIntegerField(default=0)
 
     demotions_remaining = models.SmallIntegerField(default=2)
 
@@ -63,7 +64,10 @@ class Employee(models.Model):
             self.complaints = 0
 
     def got_compliment(self):
-        self.complaints -= 1
-        if self.complaints == -3:
+        if self.complaints >= 0:
+            self.complaints -= 1
+        self.compliment += 1
+
+        if self.compliment == 3:
             self.promote()
-            self.complaints = 0
+            self.compliments = 0

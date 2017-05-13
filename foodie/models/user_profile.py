@@ -19,8 +19,8 @@ class UserProfile(models.Model):
         self.money -= total
         if ((self.money_spent > 500 or self.num_orders > 50)):
             vip, created = Group.objects.get_or_create(name='vip')
-            self.user.groups.add(group)
-            self.user.save() #Test
+            self.user.groups.add(vip)
+            self.user.save()
 
     def is_vip(self):
         return self.user.groups.filter(name="vip").exists()
@@ -29,12 +29,14 @@ class UserProfile(models.Model):
         if self.is_vip():
             vip = Group.objects.get(name='vip')
             vip.user_set.remove(self.user)
+            vip.save()
 
 
     def warn(self):
         self.warnings += 1
         if self.warnings == 2 and self.is_vip():
             self.demote_vip()
+            self.warnings = 0
         elif self.warnings >= 3:
             self.user.is_active = False
             self.user.save()
