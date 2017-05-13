@@ -27,48 +27,49 @@
       </div>
       <div class="row">
         <div class="col-md-12 ">
-                    <div class="form-group">
-                    <h3> Username:</h3>
-                    <h3> {{user.username}}</h3>
-                    </div>
-                    </div>
-                    </div>
-        <div class="row">
+          <div class="form-group">
+            <h3> Username:</h3>
+            <h3> {{user.username}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-12 ">
-                     <div class="form-group">
-                    <h3> First Name:</h3>
-                    <h3> {{user.first_name}}</h3>
-                    </div>
-                    </div>
-                    </div>
-        <div class="row">
+          <div class="form-group">
+            <h3> First Name:</h3>
+            <h3> {{user.first_name}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-12 ">
-                    <div class="form-group">
-                    <h3> Last Name:</h3>
-                    <h3> {{user.last_name}}</h3>
-                    </div>
-                    </div>
-                    </div>
-        <div class="row">
+          <div class="form-group">
+            <h3> Last Name:</h3>
+            <h3> {{user.last_name}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-12 ">
-                    <div class="form-group">
-                    <h3> Remaining Balance:</h3>
-                    <h3> {{user.userprofile.money}}</h3>
-                   </div>
-                    </div>
-                    </div>
-        <div class="row">
+          <div class="form-group">
+            <h3> Remaining Balance:</h3>
+            <h3> {{user.userprofile.money}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-12 ">
-                    <h3> Number of warnings:</h3>
-                    <h3> {{user.userprofile.warnings}}</h3>
-                   </div>
-                    </div>
-                    </div>
-                
+          <div class="form-group">
+            <h3> Number of warnings:</h3>
+            <h3> {{user.userprofile.warnings}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 ">
+          <a href="{% url 'editprofile' %}"><button type="button" class="btn btn-secondary">Edit</button></a>
         </div>
       </div>
     </div>
-  </div>
-
-
+  </div>  
 {% endblock content %}

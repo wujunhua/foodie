@@ -80,6 +80,10 @@ class FeedbackForm(forms.Form):
                         css_class='btn-secondary feedback-submit'), css_class="col-md-2"))
 
 class EditProfileForm(UserChangeForm):
+    first_name = forms.CharField(label="First Name", max_length=30,
+            widget=forms.TextInput(attrs={'type': 'text'}))
+    last_name = forms.CharField(label="Last Name", max_length=30,
+            widget=forms.TextInput(attrs={'type': 'text'}))
     class Meta:
         model = User
         fields = {
