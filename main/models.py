@@ -28,6 +28,7 @@ class Employee(models.Model):
 
     # 0 = neutral
     rating = models.SmallIntegerField(default=0)
+    complaints = models.SmallIntegerField(default=0)
 
     demotions_remaining = models.SmallIntegerField(default=2)
 
@@ -54,3 +55,15 @@ class Employee(models.Model):
 
     def promote(self, percentage):      # pass percent as 20 for 20%
         self.salary = self.salary + (self.salary * (Decimal(percentage) * Decimal(.01)))
+
+    def got_complaint(self):
+        self.complaints += 1
+        if self.complaints == 3:
+            self.demote()
+            self.complaints = 0
+
+    def got_compliment(self):
+        self.complaints -= 1
+        if self.complaints == -3:
+            self.promote()
+            self.complaints = 0
