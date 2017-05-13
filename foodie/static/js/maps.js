@@ -23,6 +23,7 @@ function displayDirections(){
 				destination: address,
 				travelMode: google.maps.TravelMode['DRIVING']
 			}, function(response,status){
+				marker.setMap(null);
 				if (status === google.maps.DirectionsStatus.OK){
 					var directionDisplay = new google.maps.DirectionsRenderer({
 						map:map,
