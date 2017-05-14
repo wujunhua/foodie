@@ -43,7 +43,7 @@ class CreateUserForm(UserCreationForm):
         return  user_profile
 
 class AddressForm(forms.Form):
-    address = forms.CharField(required=True,max_length=100)
+    address = forms.CharField(required=True,max_length=100,widget=forms.TextInput(attrs={'placeholder': '754 ninth avenue'}))
 
     def __init__(self, *args, **kwargs):
         super(AddressForm, self).__init__(*args, **kwargs)

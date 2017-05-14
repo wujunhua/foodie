@@ -21,7 +21,8 @@ function displayDirections(){
 			directionService.route({
 				origin:restaurant,
 				destination: address,
-				travelMode: google.maps.TravelMode['DRIVING']
+				travelMode: google.maps.TravelMode['DRIVING'],
+				provideRouteAlternatives: true
 			}, function(response,status){
 				marker.setMap(null);
 				if (status === google.maps.DirectionsStatus.OK){
