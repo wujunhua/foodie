@@ -21,7 +21,7 @@
         <li class="dropdown">{% include 'shopping_cart.html' %}/<li>
 
         {% elif user.is_authenticated and request.user|has_group:"chef" %}
-        <li><a href="" class="page-scroll">Edit Menu</a></li>
+        <li><a href="{% url 'admin:index' %}foodie/menu/" class="page-scroll">Edit Menu</a></li>
         <li><a href="" class="page-scroll">Dashboard</a></li>
         <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
 
