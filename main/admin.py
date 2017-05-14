@@ -13,6 +13,7 @@ class EmployeeModelAdmin(admin.ModelAdmin):
 
     list_display = ["id", "username", "first_name", "last_name", "salary", "demotions_remaining", "rating", "active", "certified", "position"]
     list_filter = ["rating", "user__first_name", "user__is_active", "certified"]
+    list_display_links = ['id', 'username']
 
     search_fields = ["id", "first_name", "last_name"]
 
