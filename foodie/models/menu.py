@@ -19,7 +19,7 @@ class Menu(models.Model):
     created_by = models.ForeignKey(
             Employee,
             on_delete=models.CASCADE,
-            #limit_choices_to={'position' : 'CH'},
+            limit_choices_to={'user__groups__name' : 'chef'},
             default=1,
     )
 

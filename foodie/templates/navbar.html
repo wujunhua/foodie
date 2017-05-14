@@ -32,6 +32,10 @@
         <li><a href="" class="page-scroll">Dashboard</a></li>
         <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
 
+        {% elif user.is_authenticated %}
+        <li><a href="{% url 'admin:index' %}" class="page-scroll">Admin</a></li>
+        <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
+
         {% else %}
         <li><a href="#about" class="page-scroll">About</a></li>
         <li><a href="#restaurant-menu" class="page-scroll">Menu</a></li>

@@ -20,6 +20,7 @@ admin.site.register(UserProfile, UserProfileAdminModel)
 class MenuAdminModel(admin.ModelAdmin):
     list_display = ["name", "short_description", "price", "rating", "created_by"]
     list_display_links = ["name", "created_by"]
+    readonly_fields = ('rating', 'num_ratings', 'times_ordered', 'vip_price')
     list_filter = ["name", "rating", "created_by"]
     search_fields = ["name", "created_by"]
 
