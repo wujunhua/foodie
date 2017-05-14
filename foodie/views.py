@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.forms import UserChangeForm
 from carton.cart import Cart
 from .models import Menu, UserProfile, Order, OrderItem, Feedback
-from .forms import CreateUserForm, AddressForm, FeedbackForm, EditProfileForm
+from .forms import CreateUserForm, AddressForm, FeedbackForm, EditProfileForm, CreateEmployeeForm
 
 def index(request):
     context = {
@@ -24,8 +24,18 @@ def register(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/login') #Redirect to customer page in future
-        print(form.errors)
         return render(request, 'register.html', {'form': form})
+
+def register_employee(request):
+    if request.method == 'GET':
+        form = CreateEmployeeForm()
+        return render(request, 'register_employee.html', {'form': form})
+    elif request.method == 'POST':
+        form = CreateEmployeeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/login')
+        return render(request, 'register_employee.html', {'form': form})
 
 @login_required(login_url='/login/')
 def menu(request):

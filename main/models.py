@@ -12,6 +12,7 @@ class Employee(models.Model):
     rating = models.SmallIntegerField(default=0)
     complaints = models.SmallIntegerField(default=0)
     compliments = models.SmallIntegerField(default=0)
+    certified = models.BooleanField(default=False)
 
     demotions_remaining = models.SmallIntegerField(default=2)
 

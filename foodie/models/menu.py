@@ -19,7 +19,7 @@ class Menu(models.Model):
     created_by = models.ForeignKey(
             Employee,
             on_delete=models.CASCADE,
-            limit_choices_to={'position' : 'CH'},
+            #limit_choices_to={'position' : 'CH'},
             default=1,
     )
 
@@ -33,4 +33,3 @@ class Menu(models.Model):
     def save(self, *args, **kwargs):
         self.vip_price = floor(self.price * .9)
         super(Menu, self).save(*args, **kwargs)
-

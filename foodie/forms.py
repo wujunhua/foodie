@@ -6,6 +6,7 @@ from crispy_forms.layout import Layout, Div, Field
 from crispy_forms.bootstrap import StrictButton, InlineRadios, InlineCheckboxes
 from django import forms
 from .models import UserProfile
+from main.models import Employee
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label="Username", max_length=30,
@@ -91,3 +92,43 @@ class EditProfileForm(UserChangeForm):
                 'last_name',
                 'password'
         }
+
+class CreateEmployeeForm(UserCreationForm):
+    CHEF = "CH"
+    DRVR = "DD"
+    MNGR = "MG"
+
+    POSITION_CHOICES = ((CHEF, 'Chef'), (DRVR, 'Delivery Driver'), (MNGR, 'Manager'))
+    username = forms.CharField(label="Username", max_length=30,
+            widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username','type' : 'text'}))
+    password1 = forms.CharField(label="Password",
+            widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password', 'type': 'password'}))
+    password2 = forms.CharField(label="Password confirmation",
+            widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password Confirmation', 'type': 'password'}))
+    first_name = forms.CharField(label="First Name", max_length=30,
+            widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name', 'type': 'text'}))
+    last_name = forms.CharField(label="Last Name", max_length=30,
+            widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name', 'type': 'text'}))
+    position =  forms.ChoiceField(choices=(POSITION_CHOICES), widget=forms.RadioSelect(attrs={'style':'margin:5px;'}))
+
+    def save(self, commit=True):
+        if not commit:
+            raise NotImplementedError("Can't create User and UserProfile without database save")
+        user = super(CreateEmployeeForm, self).save(commit=True)
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        employee = Employee()
+        employee.user = user
+
+        position = self.cleaned_data['position']
+        group = None
+        if position == self.CHEF:
+            group, created = Group.objects.get_or_create(name='chef')
+        elif position == self.DRVR:
+            group, created = Group.objects.get_or_create(name='driver')
+        elif position == self.MNGR:
+            group, created = Group.objects.get_or_create(name='manager')
+        user.groups.add(group)
+        user.save()
+        employee.save()
+        return employee

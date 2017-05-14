@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+  <header id="header">
+    <div class="intro">
+      <div class="overlay">
+        <div class="container">
+          <div class="row">
+            <div class="intro-text">
+              <h1>Register</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 offset-md-4">
+          <div class="about-text">
+            <h2>Register Employee</h2>
+            <hr> </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 ">
+            <form method="post" action="{% url 'register_employee' %}">
+                {%  csrf_token %}
+                    <div class="form-group">
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                        <!--input type="username" class="form-control" placeholder="Enter username"-->
+                    </div>
+                    <div class="form-group">
+                        {{ form.password1.label_tag }}
+                        {{ form.password1 }}
+                        <!-- input type="password" class="form-control" placeholder="Password"-->
+                    </div>
+                    <div class="form-group">
+                        {{ form.password2.label_tag }}
+                        {{ form.password2 }}
+                        <!-- input type="password" class="form-control" placeholder="Password"-->
+                    </div>
+                    <div class="form-group">
+                        {{ form.first_name.label_tag }}
+                        {{ form.first_name }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.last_name.label_tag }}
+                        {{ form.last_name }}
+                    </div>
+                    <div class="form-group" style="padding:10px;">
+                        {{ form.position }}
+                    </div>
+                    <input type="submit" class="btn btn-secondary" style="margin-bottom: 20px" value="Register"></button>
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                </form>
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
