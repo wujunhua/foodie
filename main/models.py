@@ -17,7 +17,7 @@ class Employee(models.Model):
     demotions_remaining = models.SmallIntegerField(default=2)
 
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+        return self.user.username
 
     def demote(self, percentage):       # pass percent as 20 for 20%
         if (self.demotions_remaining > 0):

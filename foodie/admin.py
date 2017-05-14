@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import UserProfile
 from .models import Menu
 from foodie.models import Order, OrderItem, Feedback
+from main.models import Employee
 
 class UserProfileAdminModel(admin.ModelAdmin):
     model = UserProfile
@@ -21,6 +22,13 @@ class MenuAdminModel(admin.ModelAdmin):
     list_display_links = ["name", "created_by"]
     list_filter = ["name", "rating", "created_by"]
     search_fields = ["name", "created_by"]
+
+    def get_queryset(self, request):
+        qs = super(MenuAdminModel, self).get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        employee = Employee.objects.filter(user=request.user).first()
+        return qs.filter(created_by=employee)
     class Meta:
         model = Menu
 
