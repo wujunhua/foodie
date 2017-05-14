@@ -129,6 +129,7 @@ class CreateEmployeeForm(UserCreationForm):
         elif position == self.MNGR:
             group, created = Group.objects.get_or_create(name='manager')
         user.groups.add(group)
+        user.is_staff = True
         user.save()
         employee.save()
         return employee
