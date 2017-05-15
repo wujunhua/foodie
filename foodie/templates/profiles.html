@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load has_group %}
 {% block title %}Profile{% endblock %}
 {% block content %}
   <header id="header">
@@ -70,6 +71,32 @@
           <a href="{% url 'editprofile' %}"><button type="button" class="btn btn-secondary">Edit</button></a>
         </div>
       </div>
+      <br>
+      <div class="row">
+        <div class="col-xs-12 col-md-8 offset-md-4">
+          <div class="about-text">
+            <h2>Recommended Dishes</h2>
+            <hr> </div>
+        </div>
+      </div>
+      <div class="row customer-menu">
+        {% for item in top_dishes %}
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <img src="{{ item.image_url }}" />
+                <div class="caption">
+                    <h3>{{ item.name }}</h3>
+                    {% if user|has_group:"vip" %}
+                    <p><span style="text-decoration:line-through">${{ item.price}}</span> <span style="color:red">${{ item.vip_price }}</span></p>
+                    {% else %}
+                    <p>${{ item.price }}</p>
+                    {% endif %}
+                    <a href="{% url 'add' %}?menu_id={{ item.id }}" class="btn btn-secondary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
     </div>
-  </div>  
+  </div>
 {% endblock content %}

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db.models import Count
 from django.contrib import messages
 from django.contrib.auth import views as auth_view
 from django.contrib.auth.decorators import login_required
@@ -134,7 +135,14 @@ def feedback(request):
             return HttpResponseRedirect(reverse('orders'))
 
 def profile(request):
-    args = {'user':request.user}
+    user_profile = UserProfile.objects.filter(user=request.user).first()
+    top_dishes = set()
+    for item in OrderItem.objects.filter(order__customer=user_profile).order_by('-food_rating').values('item__name').distinct()[:3]:
+        for menu_item in Menu.objects.filter(name=item['item__name']):
+            top_dishes.add(menu_item)
+    for menu_item in Menu.objects.filter(orderitem__order__customer=user_profile).annotate(num_orders=Count('orderitem')).order_by('-num_orders')[:3]:
+        top_dishes.add(menu_item)
+    args = {'user':request.user, 'top_dishes': top_dishes}
     return render(request, 'profiles.html',args)
 
 def edit_profile(request):
