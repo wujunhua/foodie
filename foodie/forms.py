@@ -136,6 +136,9 @@ class CreateEmployeeForm(UserCreationForm):
             group, created = Group.objects.get_or_create(name='driver')
         elif position == self.MNGR:
             group, created = Group.objects.get_or_create(name='manager')
+            for p in permissions:
+                group.permissions.add(p)
+            group.save()
 
         user.groups.add(group)
         user.is_staff = True

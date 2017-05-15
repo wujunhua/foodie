@@ -1,6 +1,8 @@
 {% load static %}
 {% load has_group %}
 
+<script type="text/javascript" src={% static "js/not-certified.js" %}></script>
+
 {% if nav_on %} <!-->Some ugly ass hell html/css hacks cause I'm too lazy to write javascript -->
 <nav id="menu" class="navbar navbar-default navbar-fixed-top" style="background-color: #262626; padding: 10px;">
 {% else %}
@@ -21,7 +23,11 @@
         <li class="dropdown">{% include 'shopping_cart.html' %}/<li>
 
         {% elif user.is_authenticated and request.user|has_group:"chef" %}
-        <li><a href="{% url 'admin:index' %}foodie/menu/" class="page-scroll">Edit Menu</a></li>
+            {% if user.employee.certified %}
+                <li><a href="{% url 'admin:index' %}foodie/menu/" class="page-scroll">Edit Menu</a></li>
+            {% else %}
+                <li><a href="#" onclick="not_certified();" class="page-scroll">Edit Menu</a></li>
+            {% endif %}
         <li><a href="" class="page-scroll">Dashboard</a></li>
         <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
 
