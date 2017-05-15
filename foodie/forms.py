@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User, Group, Permission
 from django.urls import reverse
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Field
@@ -122,12 +122,18 @@ class CreateEmployeeForm(UserCreationForm):
 
         position = self.cleaned_data['position']
         group = None
+        permissions = Permission.objects.all()
         if position == self.CHEF:
             group, created = Group.objects.get_or_create(name='chef')
+            permissions = permissions.filter(codename__contains='menu')
+            for p in permissions:
+                group.permissions.add(p)
+            group.save()
         elif position == self.DRVR:
             group, created = Group.objects.get_or_create(name='driver')
         elif position == self.MNGR:
             group, created = Group.objects.get_or_create(name='manager')
+        
         user.groups.add(group)
         user.is_staff = True
         user.save()
