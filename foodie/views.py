@@ -94,7 +94,6 @@ def checkout(request):
 def orders(request):
     user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
     orders = Order.objects.filter(customer_id=user_profile.id)
-    print(orders)
     return render(request, 'orders.html', {'nav_on': True, 'orders': orders})
 
 def rate_food(request):
@@ -114,7 +113,6 @@ def feedback(request):
         form = FeedbackForm(feedback_type=request.GET.get('type'), order_item_id=request.GET.get('order_item_id'))
         return render(request, 'feedback.html', {'form': form, 'type': request.GET.get('type'),'nav_on': True})
     elif request.method == 'POST':
-        print(request.GET.get('type'))
         form = FeedbackForm(request.GET.get('type'), request.GET.get('order_item_id'), request.POST)
         if form.is_valid():
             employee = None
@@ -144,7 +142,12 @@ def edit_profile(request):
         form = EditProfileForm(request.POST, instance=request.user)
 
         if form.is_valid():
+            money = form.cleaned_data['add_money']
             form.save()
+            user_profile = UserProfile.objects.filter(user=request.user).first()
+            frozen_orders = Order.objects.filter(customer=user_profile, frozen=True)
+            user_profile.add_money(money, frozen_orders)
+            user_profile.save()
             return redirect('profile')
         else:
             return redirect('/')

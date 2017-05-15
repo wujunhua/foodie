@@ -82,9 +82,12 @@ class FeedbackForm(forms.Form):
 
 class EditProfileForm(UserChangeForm):
     first_name = forms.CharField(label="First Name", max_length=30,
-            widget=forms.TextInput(attrs={'type': 'text'}))
+            widget=forms.TextInput(attrs={'type': 'text', 'class':'form-control'}))
     last_name = forms.CharField(label="Last Name", max_length=30,
-            widget=forms.TextInput(attrs={'type': 'text'}))
+            widget=forms.TextInput(attrs={'type': 'text', 'class':'form-control'}))
+    add_money = forms.IntegerField(label="Add Money",
+            widget=forms.TextInput(attrs={'type': 'text', 'class':'form-control'}))
+
     class Meta:
         model = User
         fields = {
@@ -133,7 +136,7 @@ class CreateEmployeeForm(UserCreationForm):
             group, created = Group.objects.get_or_create(name='driver')
         elif position == self.MNGR:
             group, created = Group.objects.get_or_create(name='manager')
-        
+
         user.groups.add(group)
         user.is_staff = True
         user.save()

@@ -40,3 +40,12 @@ class UserProfile(models.Model):
         elif self.warnings >= 3:
             self.user.is_active = False
             self.user.save()
+
+    def add_money(self, money, frozen_orders):
+        self.money += money
+
+        for order in frozen_orders:
+            if self.money > order.total:
+                self.update(order.total)
+                order.frozen = False
+                order.save()

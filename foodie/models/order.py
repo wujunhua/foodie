@@ -19,7 +19,7 @@ class Order(models.Model):
     delivered_by = models.ForeignKey(
             Employee,
             on_delete=models.CASCADE,
-            #limit_choices_to={'position' : 'DD'},
+            limit_choices_to={'user__groups__name' : 'driver'},
             null=True,
     )
 

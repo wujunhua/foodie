@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Profile{% endblock %}
 {% block content %}
-	  
+
 <header id="header">
     <div class="intro">
       <div class="overlay">
@@ -40,6 +40,14 @@
 	          		<div class="form-group">
 	             		 {{ form.last_name.label_tag }}
 	                        {{ form.last_name }}
+	          		</div>
+	        	</div>
+	      	</div>
+	      	<div class="row">
+	        	<div class="col-md-12 ">
+	          		<div class="form-group">
+	             		 {{ form.add_money.label_tag }}
+	                        {{ form.add_money }}
 	          		</div>
 	        	</div>
 	      	</div>
