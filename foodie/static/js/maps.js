@@ -26,19 +26,35 @@ function displayDirections(){
 			}, function(response,status){
 				marker.setMap(null);
 				if (status === google.maps.DirectionsStatus.OK){
+					var polycolour = "";
+      				var Opacity = 0;
+					for (var i = 0, len = response.routes.length; i < len; i++) {
+					if (i == 0) {
+					    polycolour = "#008000";
+					     Opacity = 6;
+					 }
+					  else {
+					     polycolour = "#b30000";
+					     Opacity = 2;
+					}
 					var directionDisplay = new google.maps.DirectionsRenderer({
 						map:map,
 						directions: response,
+						routeIndex: i,
 						draggable: true,
+
 						polylineOptions:{
-							strokeColor: 'green'
+							strokeColor: polycolour,
+            				strokeWeight: Opacity,
+            				stokeOpacity: Opacity
 						}
 					});
+				}
 				}else{
 					window.alert('Directions request failed due to '+ status);
 				}
 			});
-}
+		}
 function zoomToArea(){
 	var geocoder = new google.maps.Geocoder();
 	var address = document.getElementById('zoom-to-area-text').innerHTML;
