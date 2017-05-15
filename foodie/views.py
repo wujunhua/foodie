@@ -48,7 +48,7 @@ def menu(request):
 def add(request):
     cart = Cart(request.session)
     item = Menu.objects.get(pk=request.GET.get('menu_id'))
-
+    next_link = request.GET.get('next')
     if request.user.groups.filter(name="vip").exists():
         cart.add(item,price=item.vip_price)
     else:
@@ -56,7 +56,10 @@ def add(request):
 
     message = 'Added ' + item.name + ' to cart'
     messages.success(request, message)
-    return HttpResponseRedirect('/menu')
+    if next_link:
+        return HttpResponseRedirect(next_link)
+    else:
+        return HttpResponseRedirect('/menu')
 
 def remove(request):
     cart = Cart(request.session)

@@ -91,7 +91,7 @@
                     {% else %}
                     <p>${{ item.price }}</p>
                     {% endif %}
-                    <a href="{% url 'add' %}?menu_id={{ item.id }}" class="btn btn-secondary">Add to Cart</a>
+                    <a href="{% url 'add' %}?menu_id={{ item.id }}&next={% url 'profile' %}" class="btn btn-secondary">Add to Cart</a>
                 </div>
             </div>
         </div>
