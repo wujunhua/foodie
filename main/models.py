@@ -24,9 +24,9 @@ class Employee(models.Model):
             self.salary = self.salary - (self.salary * (Decimal(percentage) * Decimal(.01)))
             self.demotions_remaining -= 1
         else:
-            menu_items = Menu.objects.filter(created_by=self)
             for item in menu_items:
                 item.on_menu = False
+                item.save()
             self.demotions_remaining -= 1
             self.user.is_active = False
             self.user.save()
