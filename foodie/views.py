@@ -177,7 +177,8 @@ def valid(request):
     if feedback.feedback_type == Feedback.CMPMENT:
         feedback.employee.got_compliment()
     else:
-        feedback.employee.got_complaint()
+        menu_items = Menu.objects.filter(created_by=feedback.employee)
+        feedback.employee.got_complaint(menu_items)
     feedback.employee.save()
     feedback.manager_seen = True
     feedback.save()

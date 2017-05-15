@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
-from foodie.models import Menu
 from decimal import *       # for decimal casting in demote() function
 
 #
@@ -20,7 +19,7 @@ class Employee(models.Model):
     def __str__(self):
         return self.user.username
 
-    def demote(self, percentage):       # pass percent as 20 for 20%
+    def demote(self, percentage, menu_items):       # pass percent as 20 for 20%
         if (self.demotions_remaining > 0):
             self.salary = self.salary - (self.salary * (Decimal(percentage) * Decimal(.01)))
             self.demotions_remaining -= 1
@@ -35,10 +34,10 @@ class Employee(models.Model):
     def promote(self, percentage):      # pass percent as 20 for 20%
         self.salary = self.salary + (self.salary * (Decimal(percentage) * Decimal(.01)))
 
-    def got_complaint(self):
+    def got_complaint(self, menu_items):
         self.complaints += 1
         if self.complaints == 3:
-            self.demote(15)
+            self.demote(15, menu_items)
             self.complaints = 0
 
     def got_compliment(self):
