@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}Complaint{% endblock %}
+{% block title %}Feedback Form{% endblock %}
 {% block content %}
 <div id="about" style="min-height:800px">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-8 offset-md-4">
             <div class="about-text">
-                {% if type == 'complaint' %}
+                {% if type == 'CMPLAINT' %}
                 <h2>Complaint</h2>
                 {% else %}
                 <h2>Compliment</h2>

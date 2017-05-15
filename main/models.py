@@ -34,14 +34,15 @@ class Employee(models.Model):
     def got_complaint(self):
         self.complaints += 1
         if self.complaints == 3:
-            self.demote()
+            self.demote(15)
             self.complaints = 0
 
     def got_compliment(self):
-        if self.complaints >= 0:
+        if self.complaints > 0:
             self.complaints -= 1
-        self.compliment += 1
+        else:
+            self.compliments += 1
 
-        if self.compliment == 3:
-            self.promote()
+        if self.compliments == 3:
+            self.promote(15)
             self.compliments = 0

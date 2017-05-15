@@ -128,10 +128,10 @@ def feedback(request):
                                                      feedback=form.cleaned_data['feedback'],
                                                      employee=employee
                     )
-            if request.GET.get('type') == 'compliment':
-                feedback_model.feedback_type = Feedback.CMPLAINT
-            else:
+            if request.GET.get('type') == 'CMPMENT':
                 feedback_model.feedback_type = Feedback.CMPMENT
+            else:
+                feedback_model.feedback_type = Feedback.CMPLAINT
             feedback_model.save()
             return HttpResponseRedirect(reverse('orders'))
 

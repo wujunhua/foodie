@@ -8,15 +8,31 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="display-1">Complaints</h1>
-          <hr>
+        <h1 class="display-1">Complaints</h1>
+        <hr>
           {% for feedback in feedbacks %}
-          <div class="complaints" style="border-bottom: 2px dotted rgb(213,213,213); margin-bottom:20px;">
+            {% if feedback.feedback_type == 'complaint' %}
+              <div class="complaints" style="border-bottom: 2px dotted rgb(213,213,213); margin-bottom:20px;">
               <p style="margin: 11px 0 0px">{{ feedback.customer.user.username }} - "{{ feedback.feedback }}"&nbsp; <a href="{% url 'invalid' %}?id={{ feedback.id }}" class="btn btn-outline-primary" style="float:right;">Invalid</a> <a href="{% url 'valid' %}?id={{ feedback.id }}" class="btn btn-outline-primary" style="float:right;">Valid</a>
-          </div>
+              </div>
+            {% endif %}
           {% endfor %}
         </div>
       </div>
+        <div class="row">
+        <div class="col-md-12">
+        <h1 class="display-1">Compliments</h1>
+        <hr>
+          {% for feedback in feedbacks %}
+            {% if feedback.feedback_type == 'compliment' %}
+              <div class="compliments" style="border-bottom: 2px dotted rgb(213,213,213); margin-bottom:20px;">
+                  <p style="margin: 11px 0 0px">{{ feedback.customer.user.username }} - "{{ feedback.feedback }}"&nbsp; <a href="{% url 'invalid' %}?id={{ feedback.id }}" class="btn btn-outline-primary" style="float:right;">Invalid</a> <a href="{% url 'valid' %}?id={{ feedback.id }}" class="btn btn-outline-primary" style="float:right;">Valid</a>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
     </div>
   </div>
 {% endblock %}
