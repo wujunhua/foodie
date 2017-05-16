@@ -31,7 +31,6 @@ class UserProfile(models.Model):
             vip.user_set.remove(self.user)
             vip.save()
 
-
     def warn(self):
         self.warnings += 1
         if self.warnings == 2 and self.is_vip():

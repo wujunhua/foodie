@@ -210,8 +210,9 @@ def valid(request):
     return HttpResponseRedirect(reverse('feedbacks'))
 
 def invalid(request):
-    user_profile = UserProfile.objects.filter(user=request.user).first()
+    #user_profile = UserProfile.objects.filter(user=request.user).first()
     feedback = Feedback.objects.filter(id=request.GET.get('id')).first()
+    user_profile = feedback.customer
     user_profile.warn()
     user_profile.save()
 
