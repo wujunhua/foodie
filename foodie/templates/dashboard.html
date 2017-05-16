@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% load static %} {% load has_group %} {% block title %}Dashboard{% endblock %} {% block content %}
+<header id="header">
+    <div class="intro">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="intro-text">
+                        <h1>Overview</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8 offset-md-4">
+                <div class="about-text">
+                    <h2>Overview</h2>
+                    <hr>
+                    {% if user.is_authenticated and request.user|has_group:"manager" %}
+                    <h3>Compliant count: {{user.employee.complaints}}</h3>
+                    <h3>Compliment count: {{user.employee.compliments}}</h3>
+                    <h3>Demotions remaining: {{user.employee.demotions_remaining}}</h3>
+
+                    {% elif user.is_authenticated and request.user|has_group:"chef" %}
+                    <h3>Compliant count: {{user.employee.complaints}}</h3>
+                    <h3>Compliment count: {{user.employee.compliments}}</h3>
+                    <h3>Demotions remaining: {{user.employee.demotions_remaining}}</h3>
+
+                    {% elif user.is_authenticated and request.user|has_group:"driver" %}
+                    <h3>Compliant count: {{user.employee.complaints}}</h3>
+                    <h3>Compliment count: {{user.employee.compliments}}</h3>
+                    <h3>Demotions remaining: {{user.employee.demotions_remaining}}</h3>
+
+                    {% else %}
+                    <h3>...<h3>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
