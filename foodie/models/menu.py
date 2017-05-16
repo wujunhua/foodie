@@ -21,6 +21,7 @@ class Menu(models.Model):
             on_delete=models.CASCADE,
             limit_choices_to={'user__groups__name' : 'chef'},
             default=1,
+            #null=True,     # USEFUL TO UNCOMMENT AND COMMENT DEFAULT WHEN IMPORTING MENU ITEMS
     )
 
     def __str__(self):

@@ -31,6 +31,16 @@
         <li><a href="" class="page-scroll">Dashboard</a></li>
         <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
 
+        {% elif user.is_authenticated and request.user|has_group:"driver" %}
+            {% if user.employee.certified %}
+                <li><a href="{% url 'deliveries' %}" class="page-scroll">Deliveries</a></li>
+            {% else %}
+                <li><a href="#" onclick="not_certified();" class="page-scroll">Deliveries</a></li>
+            {% endif %}
+        <li><a href="" class="page-scroll">Dashboard</a></li>
+        <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
+
+
         {% elif user.is_authenticated and request.user|has_group:"manager" %}
         <li><a href="{% url 'admin:index' %}foodie/userprofile/?certified__exact=0" class="page-scroll">Certify Customers</a></li>
         <li><a href="{% url 'admin:index' %}main/employee/?certified__exact=0" class="page-scroll">Certify Employees</a></li>

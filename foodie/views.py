@@ -9,6 +9,7 @@ from django.contrib.auth.forms import UserChangeForm
 from carton.cart import Cart
 from .models import Menu, UserProfile, Order, OrderItem, Feedback
 from .forms import CreateUserForm, AddressForm, FeedbackForm, EditProfileForm, CreateEmployeeForm
+from main.models import Employee
 
 def index(request):
     context = {
@@ -94,6 +95,13 @@ def checkout(request):
                 user_profile.save()
             cart.clear()
             return render(request, 'order_success.html', {'address': order.address,'order_no': order.id, 'frozen': order.frozen, 'nav_on': True})
+
+def deliveries(request):
+    employee = Employee.objects.filter(user__id=request.user.id).first()
+    #user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
+    orders = Order.objects.filter(delivered_by=employee.id)
+    #orders = Order.objects.filter(customer_id=user_profile.id)
+    return render(request, 'deliveries.html', {'nav_on': True, 'orders': orders})
 
 def orders(request):
     user_profile = UserProfile.objects.filter(user__id=request.user.id).first()

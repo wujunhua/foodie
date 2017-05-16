@@ -22,6 +22,7 @@ class Order(models.Model):
             limit_choices_to={'user__groups__name' : 'driver'},
             null=True,
     )
+    delivered = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.id) + " - " + self.customer.user.username
