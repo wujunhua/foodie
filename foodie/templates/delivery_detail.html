@@ -9,10 +9,10 @@
     <div class="container">
             <h1>Delivery Details</h1>
             <hr>
+            <a href="{% url 'delivered' id=order.id %}" class="btn btn-success" style="float:right;"><strong>DELIVERED</a></strong>
             <p><strong>Deliver To:</strong>&nbsp&nbsp{{ address }}</p>
             <!-- <h1 id="zoom-to-area-text">{{address}}</h1> -->
-            <br>
-            <a href="{% url 'delivered' id=order.id %}" class="btn btn-outline-primary" style="float:right;">DELIVERED</a>
+            <!-- <br> -->
             <div id="map">
             </div>
             <div>
