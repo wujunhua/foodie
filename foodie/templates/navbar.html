@@ -41,7 +41,7 @@
         <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
 
 
-        {% elif user.is_authenticated and request.user|has_group:"manager" %}
+        {% elif user.is_authenticated and request.user|has_group:"manager" and user.employee.certified%}
         <li><a href="{% url 'admin:index' %}foodie/userprofile/?certified__exact=0" class="page-scroll">Certify Customers</a></li>
         <li><a href="{% url 'admin:index' %}main/employee/?certified__exact=0" class="page-scroll">Certify Employees</a></li>
         <li><a href="{% url 'admin:index' %}foodie/order/?delivered__exact=0" class="page-scroll">Assign Delivery</a></li>
@@ -49,8 +49,8 @@
         <li><a href="/dashboard" class="page-scroll">Dashboard</a></li>
         <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
 
-        {% elif user.is_authenticated %}
-        <li><a href="{% url 'admin:index' %}" class="page-scroll">Admin</a></li>
+        {% elif user.is_authenticated and not user.employee.certified %}
+        <li><a href="#" onclick="not_certified();" class="page-scroll">Dashboard</a></li>
         <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
 
         {% else %}
