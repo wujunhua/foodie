@@ -3,60 +3,144 @@
         "model": "foodie.menu",
         "pk": 1,
         "fields": {
-            "name": "Fresh Chicken",
-            "short_description": "Unbelievably Tasty!",
-            "long_description": "Unbelievably Tasty!",
+            "name": "Fish Soup",
+            "short_description": "Unbelievably Tasty Fish!",
+            "long_description": "Fish from the beautiful that want you to eat them!",
             "rating":  5.0,
             "price": 15,
-            "image_url": "http://i.imgur.com/Z1JT6VP.jpg"
+            "image_url": "http://f00die.city/static/img/portfolio/01-small.jpg"
         }
     },
     {
         "model": "foodie.menu",
         "pk": 2,
         "fields": {
-            "name": "Fresh Beef",
+            "name": "Carpaccio",
             "short_description": "Fingerlicking Good",
-            "long_description": "Fingerlicking Good",
-            "rating":  4.0,
+            "long_description": "Fingerlicking Good Carpaccio",
+            "rating":  4.5,
             "price": 20,
-            "image_url": "https://i.imgur.com/AzXKqbJ.png"
+            "image_url": "http://f00die.city/static/img/portfolio/02-small.jpg"
         }
     },
     {
         "model": "foodie.menu",
         "pk": 3,
         "fields": {
-            "name": "Crispy Pork",
-            "short_description": "Oink Oink",
-            "long_description": "Oink Oink",
-            "rating":  3.5,
+            "name": "Breakfast Deluxe",
+            "short_description": "Everything you ever wanted",
+            "long_description": "Rated best breakfast in the world",
+            "rating":  4.0,
             "price": 10,
-            "image_url": "https://i.imgur.com/cdg77Dh.png"
+            "image_url": "http://f00die.city/static/img/portfolio/03-small.jpg"
         }
     },
     {
         "model": "foodie.menu",
         "pk": 4,
         "fields": {
-            "name": "Turducken",
-            "short_description": "Why god...",
-            "long_description": "You prob dont wanna eat this",
-            "rating":  3.0,
+            "name": "Beef Filet",
+            "short_description": "Doesn't this look good?",
+            "long_description": "You definitely are going to wanna eat this",
+            "rating":  5.0,
             "price": 30,
-            "image_url": "https://i.imgur.com/zsy0U43.png"
+            "image_url": "http://f00die.city/static/img/portfolio/04-small.jpg"
         }
     },
     {
         "model": "foodie.menu",
         "pk": 5,
         "fields": {
-            "name": "Octopus",
-            "short_description": "So chewy, so good!",
-            "long_description": "So chewy, so good!",
+            "name": "Steak and Eggs",
+            "short_description": "Breakfast is King",
+            "long_description": "If you like meat and eggs, buy this",
+            "rating":  4.5,
+            "price": 15,
+            "image_url": "http://f00die.city/static/img/portfolio/05-small.jpg"
+        }
+    },
+    {
+        "model": "foodie.menu",
+        "pk": 6,
+        "fields": {
+            "name": "Poach Toast",
+            "short_description": "Not only for Breakfast",
+            "long_description": "If you like eggs and bread, buy this",
+            "rating":  4.5,
+            "price": 8,
+            "image_url": "http://f00die.city/static/img/portfolio/06-small.jpg"
+        }
+    },
+    {
+        "model": "foodie.menu",
+        "pk": 7,
+        "fields": {
+            "name": "Salmon Steak",
+            "short_description": "Get your fish on!",
+            "long_description": "If you like delicious fish, buy this",
+            "rating":  4.5,
+            "price": 25,
+            "image_url": "http://f00die.city/static/img/portfolio/07-small.jpg"
+        }
+    },
+    {
+        "model": "foodie.menu",
+        "pk": 8,
+        "fields": {
+            "name": "Spinach Salad",
+            "short_description": "Dieting is cool too",
+            "long_description": "If you really aren't hungry, buy this",
+            "rating":  4.5,
+            "price": 12,
+            "image_url": "http://f00die.city/static/img/portfolio/08-small.jpg"
+        }
+    },
+    {
+        "model": "foodie.menu",
+        "pk": 9,
+        "fields": {
+            "name": "Pizza",
+            "short_description": "The Top Dog Dish",
+            "long_description": "If you are a human, buy this",
+            "rating":  4.5,
+            "price": 13,
+            "image_url": "http://f00die.city/static/img/portfolio/09-small.jpg"
+        }
+    },
+    {
+        "model": "foodie.menu",
+        "pk": 10,
+        "fields": {
+            "name": "Penne Pasta",
+            "short_description": "We love italian food!",
+            "long_description": "If you like carbs, buy this",
+            "rating":  4.5,
+            "price": 19,
+            "image_url": "http://f00die.city/static/img/portfolio/10-small.jpg"
+        }
+    },
+    {
+        "model": "foodie.menu",
+        "pk": 11,
+        "fields": {
+            "name": "Pasta Al Ragu",
+            "short_description": "Pastas Back!",
+            "long_description": "If you carbs and meat, buy this",
             "rating":  4.5,
             "price": 20,
-            "image_url": "https://i.imgur.com/k1rbyCc.png"
+            "image_url": "http://f00die.city/static/img/portfolio/11-small.jpg"
+        }
+    },
+    {
+        "model": "foodie.menu",
+        "pk": 12,
+        "fields": {
+            "name": "T-Bone Steak",
+            "short_description": "Best steak ever",
+            "long_description": "If you like amazing food, buy this",
+            "rating":  4.5,
+            "price": 45,
+            "image_url": "http://f00die.city/static/img/portfolio/12-small.jpg"
         }
     }
 ]
