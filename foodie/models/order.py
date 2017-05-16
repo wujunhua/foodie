@@ -20,7 +20,6 @@ class Order(models.Model):
             Employee,
             on_delete=models.CASCADE,
             limit_choices_to={'user__groups__name' : 'driver'},
-            default=1,
             null=True,
     )
 

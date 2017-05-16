@@ -48,7 +48,7 @@
                     <p class="order-item-subtotal"> ${{ order_item.subtotal }}</p>
                 </div>
             </div>
-            {% if not order.frozen %}
+            {% if not order.frozen and order.delivered_by %}
             <div class="col-md-2 order-links">
                 <p><a href="{% url 'feedback' %}?type=CMPLAINT&order_item_id={{ order_item.id  }}">Complain</a></p> <p><a href="{% url 'feedback' %}?type=CMPMENT&order_item_id={{ order_item.id }}">Compliment</a></p>
             </div>
