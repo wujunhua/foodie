@@ -234,3 +234,8 @@ def invalid(request):
     feedback.manager_seen = True
     feedback.save()
     return HttpResponseRedirect(reverse('feedbacks'))
+
+
+@login_required(login_url='/login/')
+def dashboard(request):
+    return render(request, 'dashboard.html')

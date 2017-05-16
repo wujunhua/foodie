@@ -28,7 +28,7 @@
             {% else %}
                 <li><a href="#" onclick="not_certified();" class="page-scroll">Edit Menu</a></li>
             {% endif %}
-        <li><a href="" class="page-scroll">Dashboard</a></li>
+        <li><a href="/dashboard" class="page-scroll">Dashboard</a></li>
         <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
 
         {% elif user.is_authenticated and request.user|has_group:"driver" %}
@@ -37,7 +37,7 @@
             {% else %}
                 <li><a href="#" onclick="not_certified();" class="page-scroll">Deliveries</a></li>
             {% endif %}
-        <li><a href="" class="page-scroll">Dashboard</a></li>
+        <li><a href="/dashboard" class="page-scroll">Dashboard</a></li>
         <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
 
 
@@ -46,7 +46,7 @@
         <li><a href="{% url 'admin:index' %}main/employee/?certified__exact=0" class="page-scroll">Certify Employees</a></li>
         <li><a href="{% url 'admin:index' %}foodie/order/?delivered__exact=0" class="page-scroll">Assign Delivery</a></li>
         <li><a href="{% url 'feedbacks' %}" class="page-scroll">Feedback</a></li>
-        <li><a href="" class="page-scroll">Dashboard</a></li>
+        <li><a href="/dashboard" class="page-scroll">Dashboard</a></li>
         <li><a href="{% url 'logout' %}" class="page-scroll">Logout<br></a></li>
 
         {% elif user.is_authenticated %}
