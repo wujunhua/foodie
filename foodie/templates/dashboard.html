@@ -20,16 +20,19 @@
                     <h2>Overview</h2>
                     <hr>
                     {% if user.is_authenticated and request.user|has_group:"manager" %}
+                    <h3>Salary: {{user.employee.salary}}</h3>
                     <h3>Compliant count: {{user.employee.complaints}}</h3>
                     <h3>Compliment count: {{user.employee.compliments}}</h3>
                     <h3>Demotions remaining: {{user.employee.demotions_remaining}}</h3>
 
                     {% elif user.is_authenticated and request.user|has_group:"chef" %}
+                    <h3>Salary: {{user.employee.salary}}</h3>
                     <h3>Compliant count: {{user.employee.complaints}}</h3>
                     <h3>Compliment count: {{user.employee.compliments}}</h3>
                     <h3>Demotions remaining: {{user.employee.demotions_remaining}}</h3>
 
                     {% elif user.is_authenticated and request.user|has_group:"driver" %}
+                    <h3>Salary: {{user.employee.salary}}</h3>
                     <h3>Compliant count: {{user.employee.complaints}}</h3>
                     <h3>Compliment count: {{user.employee.compliments}}</h3>
                     <h3>Demotions remaining: {{user.employee.demotions_remaining}}</h3>
