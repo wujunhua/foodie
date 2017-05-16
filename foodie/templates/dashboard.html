@@ -24,6 +24,11 @@
                     <h3>Compliant count: {{user.employee.complaints}}</h3>
                     <h3>Compliment count: {{user.employee.compliments}}</h3>
                     <h3>Demotions remaining: {{user.employee.demotions_remaining}}</h3>
+                    <br>
+                    <br>
+                    <h2>Actions</h2>
+                    <hr>
+                    <a href="/register/employee" class="btn btn-primary" style="float:left;"><strong>Register New Employee</a></strong>
 
                     {% elif user.is_authenticated and request.user|has_group:"chef" %}
                     <h3>Salary: {{user.employee.salary}}</h3>
