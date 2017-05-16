@@ -103,6 +103,20 @@ def deliveries(request):
     #orders = Order.objects.filter(customer_id=user_profile.id)
     return render(request, 'deliveries.html', {'nav_on': True, 'orders': orders})
 
+def delivery_detail(request, id=None):
+    # instance = get_object_or_404(Order, id=id)
+    order = Order.objects.get(id=id)
+    context = {
+        "nav_on" : True,
+        "order_no" : order.id,
+        "date" : order.date,
+        "first name" : order.customer.user.first_name,
+        "address" : order.address,
+        "total" : order.total,
+        "order" : order,
+    }
+    return render(request, 'delivery_detail.html', context)
+
 def orders(request):
     user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
     orders = Order.objects.filter(customer_id=user_profile.id)

@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^checkout/$', views.checkout, name='checkout'),
     url(r'^orders/$', views.orders, name="orders"),
     url(r'^deliveries/$', views.deliveries, name="deliveries"),
+    url(r'^deliveries/(?P<id>\d+)$', views.delivery_detail, name="delivery_detail"),
     url(r'^rate-food/$', views.rate_food, name="rate-food"),
     url(r'^rate-delivery/$', views.rate_delivery, name="rate-delivery"),
     url(r'^feedback/$', views.feedback, name='feedback'),

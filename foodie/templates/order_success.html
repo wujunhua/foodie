@@ -1,22 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}{% endblock %}
 {% block content %}
+
 <div id="about" style="min-height:800px">
-<div class="container">
-	{% if frozen %}
-    <p>Your account lacks funds so your order has been frozen until you add more  funds.</p>
-    {% else %}
-    <p>Order #{{ order_no }} placed </p>
-    <!-- <h1 id="zoom-to-area-text">{{address}}</h1> -->
-    <div id="map"></div>
-	    <div>
-	    	<h1 hidden id="zoom-to-area-text">{{address}}</h1>
-	    	<br>
-			<input id="zoom-to-area" type="button" value="Delivery">
-		</div>
-    
-    {% endif %}
-    
-</div>
+	<div class="container">
+		{% if frozen %}
+		    <p>Your account lacks funds so your order has been frozen until you add more  funds.</p>
+	    {% else %}
+		    <h1>A driver is on their way!</h1>
+		    <hr>
+		    <p>Order #{{ order_no }} placed </p>
+		    <!-- <h1 id="zoom-to-area-text">{{address}}</h1> -->
+		    <div id="map">
+		    </div>
+		    <div>
+		    	<h1 hidden id="zoom-to-area-text">{{address}}</h1>
+		    	<br>
+		    	<input id="zoom-to-area" type="button" value="View Delivery Route">
+			</div>
+	    {% endif %}
+	</div>
 </div>
 {% endblock %}
