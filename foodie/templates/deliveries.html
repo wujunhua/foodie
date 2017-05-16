@@ -6,71 +6,145 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Deliveries</h1>
+                <h1>Delivery Queue</h1>
                 <hr>
             </div>
         </div>
 
         {% for order in orders reversed %}
-        <div class="row order-heading">
-            <div class="col-md-4">
-                <p class="order-no">Order #{{ order.id }}
-                {% if order.frozen %}
-                (Frozen)
-                {% endif %}
-                </p>
-            </div>
-            <div class="col-md-3">
-                <p style="float:right;">{{ order.date }}</p>
-            </div>
-            <div class="col-md-5">
-                <p style="float:right;">Total: ${{ order.total }}</p>
-            </div>
-        </div>
-
-        <div class="row order">
-            <div class="col-md-4">
-                <p style="float:left;"><strong>Customer:</strong>&nbsp&nbsp{{order.customer.user.first_name}}&nbsp{{order.customer.user.last_name}}</p>
-            </div>
-            <div class="col-md-6">
-                <p style="float:left;"><strong>Address:</strong>&nbsp&nbsp{{order.address}}</p>
-            </div>
-            <div class="col-md-2 order-links">
-                {% if order.delivered %}
-                    <p><strong><a href="{% url 'feedback' %}?type=CMPLAINT&order_item_id={{ order_item.id  }}">Warn</a></strong></p>
-                {% else %}
-                    <p><strong><a href="{% url 'delivery_detail' id=order.id %}">DELIVER</a></strong></p>
-                {% endif %}
-            </div>
-        </div>
-
-        {% for order_item in order.item_set %}
-            <div class="row order">
-                <div class="col-md-2">
-                    <img src="{{ order_item.item.image_url }}" class="checkout-img" />
-                </div>
-                <div class="col-md-4">
-                    <div class="order-row-group">
-                        <p class="order-item-name">{{ order_item.item.name }}</p>
-                        <br>
-                        <p class="order-item-descr"><em>{{ order_item.item.short_description }}</em></p>
+            {% if not order.delivered %}
+                <div class="row order-heading">
+                    <div class="col-md-4">
+                        <p class="order-no">Order #{{ order.id }}
+                        {% if order.frozen %}
+                        (Frozen)
+                        {% endif %}
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p style="float:right;">{{ order.date }}</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p style="float:right;">Total: ${{ order.total }}</p>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="order-row-group">
-                        <p class="order-item-quant">Quantity: {{ order_item.quantity }}</p>
-                        <br>
-                        <p class="order-item-subtotal"> ${{ order_item.subtotal }}</p>
+
+                <div class="row order">
+                    <div class="col-md-4">
+                        <p style="float:left;"><strong>Customer:</strong>&nbsp&nbsp{{order.customer.user.first_name}}&nbsp{{order.customer.user.last_name}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p style="float:left;"><strong>Address:</strong>&nbsp&nbsp{{order.address}}</p>
+                    </div>
+                    <div class="col-md-2 order-links">
+                        <p><strong><a href="{% url 'delivery_detail' id=order.id %}">DELIVER</a></strong></p>
                     </div>
                 </div>
-            </div>
+
+                {% for order_item in order.item_set %}
+                    <div class="row order">
+                        <div class="col-md-2">
+                            <img src="{{ order_item.item.image_url }}" class="checkout-img" />
+                        </div>
+                        <div class="col-md-4">
+                            <div class="order-row-group">
+                                <p class="order-item-name">{{ order_item.item.name }}</p>
+                                <br>
+                                <p class="order-item-descr"><em>{{ order_item.item.short_description }}</em></p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="order-row-group">
+                                <p class="order-item-quant">Quantity: {{ order_item.quantity }}</p>
+                                <br>
+                                <p class="order-item-subtotal"> ${{ order_item.subtotal }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="row order-bottom">
+                </div>
+            {% endif %}    
         {% endfor %}
-
-        <div class="row order-bottom">
-        </div>
-        
-    {% endfor %}
     </div> <!-- end container-->
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Past Deliveries</h1>
+                <hr>
+            </div>
+        </div>
+
+        {% for order in orders reversed %}
+            {% if order.delivered %}
+
+                <div class="row order-heading">
+                    <div class="col-md-4">
+                        <p class="order-no">Order #{{ order.id }}
+                        {% if order.frozen %}
+                        (Frozen)
+                        {% endif %}
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p style="float:right;">{{ order.date }}</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p style="float:right;">Total: ${{ order.total }}</p>
+                    </div>
+                </div>
+
+                <div class="row order">
+                    <div class="col-md-4">
+                        <p style="float:left;"><strong>Customer:</strong>&nbsp&nbsp{{order.customer.user.first_name}}&nbsp{{order.customer.user.last_name}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p style="float:left;"><strong>Address:</strong>&nbsp&nbsp{{order.address}}</p>
+                    </div>
+                    <div class="col-md-2 order-links">
+                        <p><strong><a href="{% url 'feedback' %}?type=CMPLAINT&order_item_id={{ order_item.id  }}">Warn</a></strong></p>
+                    </div>
+                </div>
+
+                {% for order_item in order.item_set %}
+                    <div class="row order">
+                        <div class="col-md-2">
+                            <img src="{{ order_item.item.image_url }}" class="checkout-img" />
+                        </div>
+                        <div class="col-md-4">
+                            <div class="order-row-group">
+                                <p class="order-item-name">{{ order_item.item.name }}</p>
+                                <br>
+                                <p class="order-item-descr"><em>{{ order_item.item.short_description }}</em></p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="order-row-group">
+                                <p class="order-item-quant">Quantity: {{ order_item.quantity }}</p>
+                                <br>
+                                <p class="order-item-subtotal"> ${{ order_item.subtotal }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="row order-bottom">
+                </div>
+
+            {% endif %}    
+        {% endfor %}
+    </div> <!-- end container-->
+
+
+
+
+
+
+
+
 </div>
 
 {% endblock %}

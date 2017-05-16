@@ -104,7 +104,6 @@ def deliveries(request):
     return render(request, 'deliveries.html', {'nav_on': True, 'orders': orders})
 
 def delivery_detail(request, id=None):
-    # instance = get_object_or_404(Order, id=id)
     order = Order.objects.get(id=id)
     context = {
         "nav_on" : True,
@@ -116,6 +115,26 @@ def delivery_detail(request, id=None):
         "order" : order,
     }
     return render(request, 'delivery_detail.html', context)
+
+# def delivered(request, id=None):
+#     if request.method == 'GET':
+#         form = OrderDeliveredForm(delivered=request.GET.get('delivered'), order_id=request.GET.get('order_id'))
+#         return render(request, 'delivery_detail.html', {'form': form, 'type': request.GET.get('delivered'),'nav_on': True})
+#     elif request.method == 'POST':
+#         form = OrderDeliveredForm(request.POST, instance=request.order)
+
+#         if form.is_valid():
+#             delivered = form.delivered
+#             form.save()
+#             return redirect('delivery_detail')
+#         else:
+#             return redirect('/')
+
+#     else:
+#         form = EditProfileForm(instance = request.user)
+#         args = {'form':form}
+#         return render(request, 'delivery_detail.html', args)
+
 
 def orders(request):
     user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
