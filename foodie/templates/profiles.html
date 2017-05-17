@@ -68,6 +68,18 @@
       </div>
       <div class="row">
         <div class="col-md-12 ">
+          <div class="form-group">
+            <h3> VIP Status:</h3>
+            {% if user.is_authenticated and request.user|has_group:"vip"%}
+            <h3>VIP</h3>
+            {% else %}
+            <h3>NULL</h3>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 ">
           <a href="{% url 'editprofile' %}"><button type="button" class="btn btn-secondary">Edit</button></a>
         </div>
       </div>
