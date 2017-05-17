@@ -120,6 +120,13 @@ def delivered(request, id):
     order.save()
     return HttpResponseRedirect(reverse('deliveries'))
 
+def warn_customer(request, id):
+    order = Order.objects.get(id=id)
+    cust = order.customer
+    cust.warn()
+    cust.save()
+    return HttpResponseRedirect(reverse('deliveries'))
+
 def orders(request):
     user_profile = UserProfile.objects.filter(user__id=request.user.id).first()
     orders = Order.objects.filter(customer_id=user_profile.id)
@@ -210,7 +217,6 @@ def valid(request):
     return HttpResponseRedirect(reverse('feedbacks'))
 
 def invalid(request):
-    #user_profile = UserProfile.objects.filter(user=request.user).first()
     feedback = Feedback.objects.filter(id=request.GET.get('id')).first()
     user_profile = feedback.customer
     user_profile.warn()

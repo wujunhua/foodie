@@ -96,20 +96,6 @@ class EditProfileForm(UserChangeForm):
                 'password'
         }
 
-# class OrderDeliveredForm(forms.Form):
-#     delivered = forms.BooleanField(required=False,widget=forms.CheckboxInput)
-
-#     def __init__(self, order_id, *args, **kwargs):
-#         super(OrderDeliveredForm, self).__init__(*args, **kwargs)
-#         self.helper = FormHelper()
-#         self.helper.form_method = 'post'
-#         self.helper.form_action= reverse('delivered')
-#         self.helper.layout = Layout(
-#                 'delivered',
-#                 StrictButton('Submit', type='submit', css_class='btn-secondary'),
-#                 )
-
-
 class CreateEmployeeForm(UserCreationForm):
     CHEF = "CH"
     DRVR = "DD"

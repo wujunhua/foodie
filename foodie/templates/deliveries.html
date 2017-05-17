@@ -37,7 +37,7 @@
                         <p style="float:left;"><strong>Address:</strong>&nbsp&nbsp{{order.address}}</p>
                     </div>
                     <div class="col-md-2 order-links">
-                        <p><strong><a href="{% url 'delivery_detail' id=order.id %}">DELIVER</a></strong></p>
+                        <p><strong><a href="{% url 'delivery_detail' id=order.id %}">DETAILS</a></strong></p>
                     </div>
                 </div>
 
@@ -105,7 +105,7 @@
                         <p style="float:left;"><strong>Address:</strong>&nbsp&nbsp{{order.address}}</p>
                     </div>
                     <div class="col-md-2 order-links">
-                        <p><strong><a href="{% url 'feedback' %}?type=CMPLAINT&order_item_id={{ order_item.id  }}">Warn</a></strong></p>
+                        <p><strong><a href="{% url 'delivery_detail' id=order.id %}">DETAILS</a></strong></p>
                     </div>
                 </div>
 
