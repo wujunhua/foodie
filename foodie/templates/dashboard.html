@@ -1,4 +1,15 @@
 {% extends "base.html" %} {% load static %} {% load has_group %} {% block title %}Dashboard{% endblock %} {% block content %}
+
+<style>
+    table {
+        border-spacing: 20px;
+    }
+
+    td {
+        padding: 20px;
+    }
+</style>
+
 <header id="header">
     <div class="intro">
         <div class="overlay">
@@ -26,6 +37,22 @@
                     <h3>Demotions remaining: {{user.employee.demotions_remaining}}</h3>
                     <br>
                     <br>
+                    <h2>Feedback</h2>
+                    <hr>
+                    <table>
+                        {% for feedback in feedbacks %}
+                        <tr>
+                            <th>Customer:</th>
+                            <td>{{feedback.customer.user.username}}</td>
+                            <th>Feedback:</th>
+                            <td>{{feedback.feedback}}</td>
+                            <th>Type:</th>
+                            <td>{{feedback.feedback_type}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <br>
+                    <br>
                     <h2>Actions</h2>
                     <hr>
                     <a href="/register/employee" class="btn btn-primary" style="float:left;"><strong>Register New Employee</a></strong>
@@ -35,12 +62,45 @@
                     <h3>Compliant count: {{user.employee.complaints}}</h3>
                     <h3>Compliment count: {{user.employee.compliments}}</h3>
                     <h3>Demotions remaining: {{user.employee.demotions_remaining}}</h3>
+                    <br>
+                    <br>
+                    <h2>Feedback</h2>
+                    <hr>
+                    <table>
+                        {% for feedback in feedbacks %}
+                        <tr>
+                            <th>Customer:</th>
+                            <td>{{feedback.customer.user.username}}</td>
+                            <th>Feedback:</th>
+                            <td>{{feedback.feedback}}</td>
+                            <th>Type:</th>
+                            <td>{{feedback.feedback_type}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
 
                     {% elif user.is_authenticated and request.user|has_group:"driver" %}
                     <h3>Salary: {{user.employee.salary}}</h3>
                     <h3>Compliant count: {{user.employee.complaints}}</h3>
                     <h3>Compliment count: {{user.employee.compliments}}</h3>
                     <h3>Demotions remaining: {{user.employee.demotions_remaining}}</h3>
+                    <br>
+                    <br>
+                    <h2>Feedback</h2>
+                    <hr>
+                    <table>
+                        {% for feedback in feedbacks %}
+                        <tr>
+                            <th>Customer:</th>
+                            <td>{{feedback.customer.user.username}}</td>
+                            <th>Feedback:</th>
+                            <td>{{feedback.feedback}}</td>
+                            <th>Type:</th>
+                            <td>{{feedback.feedback_type}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
 
                     {% else %}
                     <h3>...<h3>

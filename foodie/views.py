@@ -222,4 +222,5 @@ def invalid(request):
 
 @login_required(login_url='/login/')
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    feedbacks = Feedback.objects.filter(employee__user=request.user)
+    return render(request, 'dashboard.html', {'feedbacks': feedbacks})
