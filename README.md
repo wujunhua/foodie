@@ -67,7 +67,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-Also add the following to your settings.py
+Also add the following to your settings.py (Or make a copy of settings_sample.py and modify local database information)
 ```
 CART_PRODUCT_MODEL = 'foodie.models.Menu'
 ```
