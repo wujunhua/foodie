@@ -9,7 +9,7 @@ class UserProfileAdminModel(admin.ModelAdmin):
     list_display = ['id', 'user',  'money', 'warnings', 'certified','money_spent', 'num_orders']
     list_display_links = ["id", "user"]
     readonly_fields = ('user',)
-    list_filter = ["certified", "warnings"]
+    list_filter = ["certified", "user__is_active"]
     search_fields = ['user__username']
     class Meta:
         model = UserProfile
