@@ -11,7 +11,7 @@ class Menu(models.Model):
     long_description = models.TextField(default="")
     price = models.IntegerField()
     vip_price = models.IntegerField(default=0)
-    rating = models.FloatField(default=0.0) #might not need this field
+    rating = models.DecimalField(default=0.0, max_digits=3, decimal_places=2) #might not need this field
     num_ratings = models.IntegerField(default=0) #might not need this field
     times_ordered = models.IntegerField(default=0)
     image_url = models.URLField(default="")
