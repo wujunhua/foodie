@@ -30,7 +30,7 @@
         {% for item in row %}
         <div class="col-md-3">
             <div class="thumbnail">
-                <img src="{{ item.image_url }}" />
+                <img src="{% static item.image_url %}" />
                 <div class="caption">
                     <h3>{{ item.name }}</h3>
                     {% if user|has_group:"vip" %}
